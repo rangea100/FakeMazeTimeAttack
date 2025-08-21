@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://5aln6ftgvk7b"]
+
+[ext_resource type="BoxMesh" uid="uid://cy87p1odyte7o" path="res://sceans/labyrinth_tiles.tres" id="1_pp8vm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pp8vm"]
+size = Vector3(3, 5, 3)
+
+[node name="invisible" type="MeshInstance3D"]
+layers = 2
+mesh = ExtResource("1_pp8vm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_pp8vm")

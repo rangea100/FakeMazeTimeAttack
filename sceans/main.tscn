@@ -1,0 +1,895 @@
+[gd_scene load_steps=28 format=3 uid="uid://dx8khweldt1o4"]
+
+[ext_resource type="Script" uid="uid://dfysjojkjkmdp" path="res://sceans/character_body_3d.gd" id="1_if5bh"]
+[ext_resource type="Script" uid="uid://d31qd1bsgoqqi" path="res://sceans/main.gd" id="1_x0kff"]
+[ext_resource type="PackedScene" uid="uid://bey2wmtbl7nki" path="res://sceans/pause_menue.tscn" id="2_0o0wm"]
+[ext_resource type="Shader" uid="uid://bsltbxndxa2cv" path="res://sceans/noise.gdshader" id="2_q12lg"]
+[ext_resource type="Texture2D" uid="uid://btc1hktjgyq10" path="res://assets/透過用1.png" id="2_sytet"]
+[ext_resource type="Script" uid="uid://b6pawbtin0gse" path="res://sceans/player_ui.gd" id="2_wi7tx"]
+[ext_resource type="Texture2D" uid="uid://buajav5d2dc0f" path="res://assets/mapclip.png" id="4_2gtkq"]
+[ext_resource type="Texture2D" uid="uid://d4jsohh3oejwj" path="res://assets/background.png" id="4_yt73i"]
+[ext_resource type="Texture2D" uid="uid://b3xalwqlkon1b" path="res://assets/mapback.png" id="5_v578v"]
+[ext_resource type="Texture2D" uid="uid://0rbxm7vbpk67" path="res://assets/mapback2.png" id="6_v578v"]
+[ext_resource type="Texture2D" uid="uid://5wr4pqlwqkis" path="res://assets/meter_back_clip.png" id="9_tutu3"]
+[ext_resource type="Texture2D" uid="uid://bm0hjy5l1o0u0" path="res://assets/meter_back.png" id="10_5vvnq"]
+[ext_resource type="Texture2D" uid="uid://jw656qyli3db" path="res://assets/meter_gazi.png" id="11_x0kff"]
+[ext_resource type="MeshLibrary" uid="uid://bp5thngjj3clb" path="res://assets/mesh_liblary/labyrinth_tiles.tres" id="13_5vvnq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0o0wm"]
+height = 2.49091
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt73i"]
+shader = ExtResource("2_q12lg")
+shader_parameter/noise_intensity = 0.5
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kqn4m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_if5bh"]
+sky_material = SubResource("ProceduralSkyMaterial_kqn4m")
+
+[sub_resource type="Environment" id="Environment_0o0wm"]
+background_mode = 2
+sky = SubResource("Sky_if5bh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wi7tx"]
+viewport_path = NodePath("player/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2gtkq"]
+viewport_path = NodePath("player/minimap")
+
+[sub_resource type="Animation" id="Animation_sytet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_ui/true_view:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.00621, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_ui/map/background:value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player_ui/map/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player_ui/map/ProgressBar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player_ui/map/ProgressBar:value")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("player_ui/map/Label:text")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Lording"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("player_ui/map/background:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("player_ui/map:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("player_ui/map/viewmapcon:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("player_ui/map/viewmapcon:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("player_ui/dark:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("player_ui/dark:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("player_ui/dark/dark:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("player_ui/dark/dark2:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 324)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("player_ui/background:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("player_ui/background2:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("player_ui/background2:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("player_ui/view_but_meter_animetion:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("player_ui/view_but_meter_animetion:value")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("player_ui/view_but_meter_animetion/TextureProgressBar:value")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [100.0]
+}
+
+[sub_resource type="Animation" id="Animation_v578v"]
+resource_name = "restoration_map"
+length = 0.25
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_ui/map/viewmapcon:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_ui/map/viewmapcon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q12lg"]
+resource_name = "ui_on"
+length = 3.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_ui/map/background:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.75, 1.75),
+"transitions": PackedFloat32Array(3.86375, 0.297302),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_ui/map/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.75, 3.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player_ui/map/ProgressBar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player_ui/map/ProgressBar:value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.75, 3.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player_ui/map/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.75, 2.08, 2.41, 2.71667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Lording", "Lording.", "Lording..", "Lording..."]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("player_ui/map/background:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("player_ui/map:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.08333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("player_ui/map/viewmapcon:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.25, 3.375, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("player_ui/map/viewmapcon:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("player_ui/dark:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("player_ui/dark:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("player_ui/dark/dark:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(0.5, 2.82843),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -324)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("player_ui/dark/dark2:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(0.615572, 1.8025),
+"update": 0,
+"values": [Vector2(0, 324), Vector2(0, 648)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("player_ui/background:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("player_ui/background2:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("player_ui/background2:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(0.594604, 2.21914),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("player_ui/view_but_meter_animetion:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("player_ui/view_but_meter_animetion:value")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1.25, 1.75),
+"transitions": PackedFloat32Array(3.24901, 0.378929),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("player_ui/view_but_meter_animetion/TextureProgressBar:value")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 1.75, 3.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 100.0]
+}
+
+[sub_resource type="Animation" id="Animation_wi7tx"]
+resource_name = "view_off"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_ui/true_view:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 0.757858, 1.93188),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.01), Vector2(0.01, 0.01)]
+}
+
+[sub_resource type="Animation" id="Animation_ldleo"]
+resource_name = "view_on"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_ui/true_view:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 0.594604),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2gtkq"]
+_data = {
+&"RESET": SubResource("Animation_sytet"),
+&"restoration_map": SubResource("Animation_v578v"),
+&"ui_on": SubResource("Animation_q12lg"),
+&"view_off": SubResource("Animation_wi7tx"),
+&"view_on": SubResource("Animation_ldleo")
+}
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_x0kff")
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -27.391, 1.5, -26.6654)
+script = ExtResource("1_if5bh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647517, 0)
+shape = SubResource("CapsuleShape3D_0o0wm")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88015, 0)
+cull_mask = 1048573
+
+[node name="noise" type="Control" parent="player/Camera3D"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="player/Camera3D/noise"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.788235)
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera3D/noise"]
+material = SubResource("ShaderMaterial_yt73i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="player"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 11.3036, 0)
+remote_path = NodePath("../minimap/Camera3D")
+update_rotation = false
+
+[node name="SubViewport" type="SubViewport" parent="player"]
+size = Vector2i(1152, 648)
+
+[node name="Camera3D" type="Camera3D" parent="player/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+cull_mask = 1048571
+
+[node name="minimap" type="SubViewport" parent="player"]
+size = Vector2i(300, 300)
+
+[node name="Camera3D" type="Camera3D" parent="player/minimap"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -27.391, 12.8036, -26.6654)
+cull_mask = 1048573
+projection = 1
+size = 20.0
+
+[node name="ColorRect" type="ColorRect" parent="player/minimap"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.8, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0o0wm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(57, 1, 57)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="player_ui" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("2_wi7tx")
+
+[node name="background2" type="TextureRect" parent="CanvasLayer/player_ui"]
+modulate = Color(0.0705882, 0.858824, 0.92549, 0.14902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("4_yt73i")
+
+[node name="true_view" type="TextureRect" parent="CanvasLayer/player_ui"]
+visible = false
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00621, 1)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("2_sytet")
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/player_ui/true_view"]
+modulate = Color(0.3153, 0.942973, 0, 1)
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("ViewportTexture_wi7tx")
+
+[node name="map" type="Control" parent="CanvasLayer/player_ui"]
+layout_mode = 1
+anchor_right = 0.196
+anchor_bottom = 0.347
+offset_right = 0.207993
+offset_bottom = 0.143997
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="TextureProgressBar" parent="CanvasLayer/player_ui/map"]
+clip_children = 1
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 300.0
+scale = Vector2(0.75, 0.75)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("4_2gtkq")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/player_ui/map/background"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 300.0
+texture = ExtResource("5_v578v")
+
+[node name="Label" type="Label" parent="CanvasLayer/player_ui/map"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 81.0
+offset_right = 204.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 21
+text = "Lording"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/player_ui/map"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 127.0
+offset_right = 196.0
+offset_bottom = 148.0
+
+[node name="viewmapcon" type="Control" parent="CanvasLayer/player_ui/map"]
+layout_mode = 1
+anchors_preset = 0
+pivot_offset = Vector2(112.5, 112.5)
+
+[node name="viewmap" type="TextureRect" parent="CanvasLayer/player_ui/map/viewmapcon"]
+clip_children = 1
+layout_mode = 1
+offset_right = 303.0
+offset_bottom = 300.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(3.55555, 1.77777)
+texture = ExtResource("6_v578v")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/player_ui/map/viewmapcon/viewmap"]
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 300.0
+texture = SubResource("ViewportTexture_2gtkq")
+
+[node name="view_but_meter_animetion" type="TextureProgressBar" parent="CanvasLayer/player_ui"]
+visible = false
+clip_children = 1
+layout_mode = 0
+offset_left = 849.0
+offset_top = -68.0
+offset_right = 1149.0
+offset_bottom = 232.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("9_tutu3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/player_ui/view_but_meter_animetion"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+texture_under = ExtResource("10_5vvnq")
+texture_progress = ExtResource("11_x0kff")
+tint_progress = Color(0, 1, 0, 1)
+
+[node name="view_but_meter" type="TextureProgressBar" parent="CanvasLayer/player_ui"]
+visible = false
+clip_children = 1
+layout_mode = 0
+offset_left = 849.0
+offset_top = -68.0
+offset_right = 1149.0
+offset_bottom = 232.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("9_tutu3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/player_ui/view_but_meter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+step = 0.01
+value = 100.0
+texture_under = ExtResource("10_5vvnq")
+texture_progress = ExtResource("11_x0kff")
+tint_progress = Color(0, 1, 0, 1)
+
+[node name="signal_lost_text" type="Label" parent="CanvasLayer/player_ui"]
+visible = false
+layout_mode = 0
+offset_left = 859.0
+offset_top = 57.0
+offset_right = 1174.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 27
+text = "Signal Lost"
+
+[node name="background" type="ColorRect" parent="CanvasLayer/player_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.94902, 0.937255, 0.0941176)
+
+[node name="dark" type="Control" parent="CanvasLayer/player_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dark" type="ColorRect" parent="CanvasLayer/player_ui/dark"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="dark2" type="ColorRect" parent="CanvasLayer/player_ui/dark"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/player_ui"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_2gtkq")
+}
+
+[node name="pause_menue" parent="CanvasLayer" instance=ExtResource("2_0o0wm")]
+visible = false
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 0, -31.5)
+mesh_library = ExtResource("13_5vvnq")
+cell_size = Vector3(3, 1, 3)
+
+[connection signal="animation_finished" from="CanvasLayer/player_ui/AnimationPlayer" to="player" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/player_ui/AnimationPlayer" to="CanvasLayer/player_ui" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="CanvasLayer/player_ui/AnimationPlayer" to="player" method="_on_animation_player_animation_started"]
