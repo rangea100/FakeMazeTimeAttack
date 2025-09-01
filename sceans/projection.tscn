@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwhqpj62m1iep"]
-
-[ext_resource type="BoxMesh" uid="uid://cy87p1odyte7o" path="res://sceans/labyrinth_tiles.tres" id="1_u34mt"]
-
-[node name="projection" type="MeshInstance3D"]
-layers = 4
-mesh = ExtResource("1_u34mt")

@@ -1,0 +1,308 @@
+[gd_scene load_steps=12 format=3 uid="uid://ci5sk515mtrsf"]
+
+[ext_resource type="Script" uid="uid://dda0q18a6j1ei" path="res://sceans/gdscript/options.gd" id="1_yv1i3"]
+[ext_resource type="Script" uid="uid://jkdpy1uma31b" path="res://sceans/scean/h_slider.gd" id="2_0spym"]
+[ext_resource type="AudioStream" uid="uid://bsy2ngtpqleys" path="res://assets/sound/off.mp3" id="3_7th76"]
+[ext_resource type="AudioStream" uid="uid://b7rbx40sehm4q" path="res://assets/sound/select.mp3" id="4_7th76"]
+
+[sub_resource type="Theme" id="Theme_bbsm1"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_naoqu"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ktsl7"]
+color = Color(0.29, 0.29, 1, 1)
+thickness = 6
+
+[sub_resource type="Animation" id="Animation_bbsm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xf2ac"]
+resource_name = "option_off"
+length = 0.25
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.366022, 4.2871),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.01, 0.01)]
+}
+
+[sub_resource type="Animation" id="Animation_gnh41"]
+resource_name = "option_on"
+length = 0.25
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.307786, 3.36359),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhjqt"]
+_data = {
+&"RESET": SubResource("Animation_bbsm1"),
+&"option_off": SubResource("Animation_xf2ac"),
+&"option_on": SubResource("Animation_gnh41")
+}
+
+[node name="options" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -223.5
+offset_right = 289.0
+offset_bottom = 223.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(289, 223.5)
+script = ExtResource("1_yv1i3")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 48.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bbsm1")
+current_tab = 0
+
+[node name="画面" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="FullscreenControl" type="CheckButton" parent="TabContainer/画面"]
+layout_mode = 2
+offset_left = 48.0
+offset_top = 70.5
+offset_right = 236.0
+offset_bottom = 98.5
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "フルスクリーン"
+
+[node name="resolutioncontrol" type="OptionButton" parent="TabContainer/画面"]
+layout_mode = 2
+offset_left = 329.0
+offset_top = 74.5
+offset_right = 505.0
+offset_bottom = 102.5
+selected = 0
+item_count = 2
+popup/item_0/text = "1152×648"
+popup/item_0/id = 0
+popup/item_1/text = "1920×1080"
+popup/item_1/id = 1
+
+[node name="ゲーム" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="mapControal" type="CheckButton" parent="TabContainer/ゲーム"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 23.5
+offset_right = 257.0
+offset_bottom = 99.5
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "マップを回転"
+
+[node name="sensitivityLabel" type="Label" parent="TabContainer/ゲーム"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 101.5
+offset_right = 103.0
+offset_bottom = 121.5
+theme_override_font_sizes/font_size = 20
+text = "感度"
+
+[node name="sensitivity" type="HSlider" parent="TabContainer/ゲーム"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 122.5
+offset_right = 500.0
+offset_bottom = 140.5
+theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+min_value = 0.3
+max_value = 0.9
+step = 0.1
+value = 0.5
+
+[node name="サウンド" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="masterLabel" type="Label" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 23.5
+offset_right = 328.0
+offset_bottom = 43.5
+theme_override_font_sizes/font_size = 20
+text = "マスター音量"
+
+[node name="master" type="HSlider" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 51.5
+offset_right = 490.0
+offset_bottom = 67.5
+theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("2_0spym")
+audio_bus_name = "Master"
+
+[node name="seLabel" type="Label" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 98.5
+offset_right = 241.0
+offset_bottom = 118.5
+theme_override_font_sizes/font_size = 20
+text = "SE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="se" type="HSlider" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 120.0
+offset_right = 266.0
+offset_bottom = 136.0
+theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("2_0spym")
+audio_bus_name = "SE"
+audio_id = 1
+
+[node name="BGMLabel" type="Label" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 97.5
+offset_right = 451.0
+offset_bottom = 117.5
+theme_override_font_sizes/font_size = 20
+text = "BGM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGM" type="HSlider" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 119.5
+offset_right = 484.0
+offset_bottom = 135.5
+theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("2_0spym")
+audio_bus_name = "BGM"
+audio_id = 2
+
+[node name="開発者特権" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="developerMode" type="CheckButton" parent="TabContainer/開発者特権"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 23.5
+offset_right = 257.0
+offset_bottom = 99.5
+theme_override_font_sizes/font_size = 20
+text = "開発者モード"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 2.5
+offset_right = -1.0
+offset_bottom = 75.5
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "設定"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="Button" parent="."]
+layout_mode = 1
+offset_left = 232.0
+offset_top = 302.5
+offset_right = 341.0
+offset_bottom = 366.5
+theme_override_font_sizes/font_size = 32
+text = "戻る"
+
+[node name="off" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7th76")
+bus = &"SE"
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7th76")
+bus = &"SE"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xhjqt")
+}
+
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="toggled" from="TabContainer/画面/FullscreenControl" to="." method="_on_fullscreen_control_toggled"]
+[connection signal="item_selected" from="TabContainer/画面/resolutioncontrol" to="." method="_on_resolutioncontrol_item_selected"]
+[connection signal="toggled" from="TabContainer/ゲーム/mapControal" to="." method="_on_map_controal_toggled"]
+[connection signal="value_changed" from="TabContainer/ゲーム/sensitivity" to="." method="_on_sensitivity_value_changed"]
+[connection signal="value_changed" from="TabContainer/サウンド/master" to="TabContainer/サウンド/master" method="_on_value_changed"]
+[connection signal="value_changed" from="TabContainer/サウンド/se" to="TabContainer/サウンド/se" method="_on_value_changed"]
+[connection signal="value_changed" from="TabContainer/サウンド/BGM" to="TabContainer/サウンド/BGM" method="_on_value_changed"]
+[connection signal="toggled" from="TabContainer/開発者特権/developerMode" to="." method="_on_developer_mode_toggled"]
+[connection signal="pressed" from="back" to="." method="_on_back_option_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc1l6m0wy628q"]
+
+[ext_resource type="Script" uid="uid://wtbi7prcnpou" path="res://sceans/gdscript/goal.gd" id="1_vfohh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qm7mj"]
+size = Vector3(1.5, 5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjmyu"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.537255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vfohh"]
+material = SubResource("StandardMaterial3D_kjmyu")
+size = Vector3(1, 20, 1)
+
+[node name="Goal" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vfohh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qm7mj")
+
+[node name="bar" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vfohh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

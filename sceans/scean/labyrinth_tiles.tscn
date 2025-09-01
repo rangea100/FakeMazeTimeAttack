@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b2tnjjytb8f02"]
 
-[ext_resource type="BoxMesh" uid="uid://cy87p1odyte7o" path="res://sceans/labyrinth_tiles.tres" id="1_nm8jc"]
+[ext_resource type="BoxMesh" uid="uid://cy87p1odyte7o" path="res://sceans/labyrinth_tiles.tres" id="1_uwww0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nm8jc"]
 size = Vector3(3, 5, 3)
@@ -38,7 +38,7 @@ size = Vector3(3, 10, 3)
 [node name="normal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 visible = false
-mesh = ExtResource("1_nm8jc")
+mesh = ExtResource("1_uwww0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="normal"]
 
@@ -71,3 +71,11 @@ mesh = SubResource("BoxMesh_jp1j7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="goal_wall/StaticBody3D"]
 shape = SubResource("BoxShape3D_nm8jc")
+
+[node name="trap_maker" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_xdi57")
+
+[node name="goal_marker" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_xdi57")
