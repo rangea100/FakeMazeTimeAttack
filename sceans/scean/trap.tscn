@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://exoptmja3fi4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p5k88"]
+size = Vector3(3, 0.3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5k88"]
+size = Vector3(3, 0.3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iuh8d"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="trap" type="Area3D" groups=["trap"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+visible = false
+layers = 2
+mesh = SubResource("BoxMesh_p5k88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("BoxShape3D_p5k88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0946, 0, 0, 0, 1.0946, 0, 0, 0, 1.0946, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_iuh8d")

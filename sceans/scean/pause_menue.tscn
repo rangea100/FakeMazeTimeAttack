@@ -1,28 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://bey2wmtbl7nki"]
+[gd_scene load_steps=7 format=3 uid="uid://bey2wmtbl7nki"]
 
-[ext_resource type="Script" uid="uid://c232m88cekh80" path="res://sceans/pause_menue.gd" id="1_m6dkm"]
+[ext_resource type="Script" uid="uid://c232m88cekh80" path="res://sceans/gdscript/pause_menue.gd" id="1_m6dkm"]
+[ext_resource type="PackedScene" uid="uid://ci5sk515mtrsf" path="res://sceans/scean/options.tscn" id="2_ygd0d"]
 
 [sub_resource type="Animation" id="Animation_ygd0d"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("options:scale")
+tracks/0/path = NodePath("finish_menu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("finish_menu:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -63,45 +52,11 @@ tracks/0/keys = {
 "values": [Vector2(0.01, 0.01), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_gnh41"]
-resource_name = "option_off"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("options:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(4.14106, 0.25),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.01, 0.01)]
-}
-
-[sub_resource type="Animation" id="Animation_m6dkm"]
-resource_name = "option_on"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("options:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(0.307786, 3.36359),
-"update": 0,
-"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_si15g"]
 _data = {
 &"RESET": SubResource("Animation_ygd0d"),
 &"finish_menu_off": SubResource("Animation_ifub5"),
-&"finish_menu_on": SubResource("Animation_si15g"),
-&"option_off": SubResource("Animation_gnh41"),
-&"option_on": SubResource("Animation_m6dkm")
+&"finish_menu_on": SubResource("Animation_si15g")
 }
 
 [node name="pause_menue" type="Control"]
@@ -176,64 +131,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "終わる"
 
-[node name="options" type="Panel" parent="."]
+[node name="options" parent="." instance=ExtResource("2_ygd0d")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -289.0
-offset_top = -223.5
-offset_right = 289.0
-offset_bottom = 223.5
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(293, 216.5)
-
-[node name="Label" type="Label" parent="options"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 73.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "設定"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="back" type="Button" parent="options"]
-layout_mode = 1
-offset_left = 232.0
-offset_top = 302.5
-offset_right = 341.0
-offset_bottom = 366.5
-theme_override_font_sizes/font_size = 32
-text = "戻る"
-
-[node name="FullscreenControl" type="CheckButton" parent="options"]
-layout_mode = 0
-offset_left = 65.0
-offset_top = 84.5
-offset_right = 274.0
-offset_bottom = 160.5
-theme_override_font_sizes/font_size = 20
-button_pressed = true
-text = "フルスクリーン"
-
-[node name="resolutioncontrol" type="OptionButton" parent="options"]
-layout_mode = 0
-offset_left = 335.0
-offset_top = 109.5
-offset_right = 495.0
-offset_bottom = 134.5
-selected = 0
-item_count = 2
-popup/item_0/text = "1152×648"
-popup/item_0/id = 0
-popup/item_1/text = "1920×1080"
-popup/item_1/id = 1
 
 [node name="finish_menu" type="Panel" parent="."]
 visible = false
@@ -288,8 +188,6 @@ libraries = {
 [connection signal="pressed" from="MainButtons/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MainButtons/setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="options/back" to="." method="_on_back_option_pressed"]
-[connection signal="toggled" from="options/FullscreenControl" to="." method="_on_fullscreen_control_toggled"]
-[connection signal="item_selected" from="options/resolutioncontrol" to="." method="_on_resolutioncontrol_item_selected"]
+[connection signal="option_offed" from="options" to="." method="_on_options_option_offed"]
 [connection signal="pressed" from="finish_menu/finish" to="." method="_on_finish_pressed"]
 [connection signal="pressed" from="finish_menu/back" to="." method="_on_back_finish_menu_pressed"]

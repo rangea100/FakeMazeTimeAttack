@@ -8,12 +8,22 @@ extends Control
 @onready var progress_bar: ProgressBar = $map/ProgressBar
 @onready var player: CharacterBody3D = $"../../player"
 @onready var view_but_bar: TextureProgressBar = $view_but_meter/TextureProgressBar
+@onready var map_camera: Camera3D = $"../../player/minimap/Camera3D"
+@onready var stopwatch: Control = $stopwatch
+@onready var skill: SkillManager = $skill
+@onready var game_clear: Control = $"../game_clear"
 
 @export var drain_time: float = 7.5 
 @export var recovery_time: float = 15.0
+@export var item_1_count:int = 3
+@export var item_2_count:int = 1
+@export var item_3_count:int = 5
+var item_1_use:bool = false
+var item_2_use:bool = false
+var item_3_use:bool = false
 var using_item: bool = false  # 使用中かどうかを判定
 var can_use:bool = true
-
+var use_ui: bool = false
 var true_view_on:bool = false
 var signal_lost_flug = false
 
@@ -23,13 +33,32 @@ func _ready() -> void:
 	map.visible = false
 	$background.visible = false
 	$background2.visible = false
-	true_view.visible = false
+	$view_but_meter.visible = false
+	$PlayerLabel.text = Settings.player_name
 	background.value = 0
 	true_view.scale = Vector2(0.01,0.01)
 	view_but_bar.value = 100
-	await get_tree().create_timer(1.0).timeout
+	skill.set_all_skills_notskill(true)
+	SignalManager.on_game_compleat.connect(_on_game_complete)
+	AudioManager.play_BGM("res://assets/sound/BGM1.ogg",0.0,0.0,1.0,true)
+	#await wait_for_key("e")
+	await get_tree().create_timer(1.5).timeout
 	animation_player.play("ui_on")
+func wait_for_key(key: String) -> void:
+	while true:
+		var ev: InputEvent = await get_tree().create_timer(0.01).timeout
+		# ポーリング的にキー押下を確認
+		if Input.is_action_just_pressed(key):
+			return
 func _process(delta: float) -> void:
+	$map/map_ex_bar.value= ($skill/SkillButton1.time_left / $skill/SkillButton1.wait_time) * 10
+	$map/truemap_bar.value= ($skill/SkillButton2.time_left / $skill/SkillButton2.wait_time) * 10
+	if Settings.map_rotaition:
+		$"../../player/minimap/TextureRect".rotation = 0
+		$"../../player/minimap/Camera3D".rotation.y = $"../../player".rotation.y
+	else:
+		$"../../player/minimap/Camera3D".rotation.y = 0
+		$"../../player/minimap/TextureRect".rotation = -$"../../player".rotation.y
 	if using_item and can_use:
 		view_but_bar.value -= (view_but_bar.max_value / drain_time) * delta
 		if view_but_bar.value <= 0:
@@ -49,7 +78,7 @@ func _process(delta: float) -> void:
 	else:
 		view_but_bar.value += (view_but_bar.max_value / 10) * delta
 	
-	if Input.is_action_just_pressed("e") and not animation_player.is_playing()and can_use:
+	if Input.is_action_just_pressed("e") and not animation_player.is_playing()and can_use and use_ui:
 		if signal_lost_flug:
 			pass
 		else:
@@ -61,8 +90,8 @@ func _process(delta: float) -> void:
 			else:
 				animation_player.play("view_off")
 				using_item=false
-	if Input.is_action_just_pressed("y"):
-		signal_lost(5.0)
+	if Input.is_action_just_pressed("y")and use_ui:
+		signal_lost(10.0)
 func _update_size() -> void:
 	true_view.pivot_offset = size/2
 	viewmap.pivot_offset = map.size/2
@@ -70,7 +99,9 @@ func _update_size() -> void:
 
 func signal_lost(time:float) -> void:
 	true_view_on = false
+	use_ui= false
 	animation_player.play("view_off")
+	stopwatch.signal_lost = true
 	$map/viewmapcon.visible = false
 	$map/Label.visible = true
 	$map/Label.text = "Signal\nLost"
@@ -79,6 +110,7 @@ func signal_lost(time:float) -> void:
 	view_but_bar.tint_progress = Color(1,0,0)
 	signal_lost_flug = true
 	using_item=false
+	skill.set_all_skills_disabled(true)
 	progress_bar.value = 0
 	var tween = create_tween()
 	tween.tween_property(progress_bar,"value",100,time)
@@ -88,9 +120,41 @@ func signal_lost(time:float) -> void:
 	signal_lost_flug = false
 	$signal_lost_text.visible = false
 	view_but_bar.tint_progress = Color(0,1,0)
+	use_ui= true
+	stopwatch.signal_lost = false
+	skill.set_all_skills_disabled(not Settings.item_can_use)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "view_off":
 		true_view.visible = false
 	if anim_name == "ui_on":
 		$view_but_meter.visible = true
+		use_ui= true
+		stopwatch.start_stopwatch()
+		skill.set_all_skills_notskill(false)
+		skill.set_all_skills_disabled(not Settings.item_can_use)
+		$key_display.visible = true
+
+
+func _on_trap_hitbox_body_entered(body: Node3D) -> void:
+	if signal_lost_flug == false:
+		signal_lost(10)
+
+func _on_game_complete() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$"../pause_menue".can_pause = false
+	stopwatch.stop_stopwatch()
+	$"../game_clear/Label".text = "クリアタイムは"+stopwatch.format_time(stopwatch.elapsed_time)+"です。"
+	if Settings.player_name== "":
+		pass
+	else:
+		RankingSave.add_record(Settings.player_name,stopwatch.elapsed_time,stopwatch.format_time(stopwatch.elapsed_time),Settings.regulation,Settings.map_size)
+		RankingSave.save_ranking()
+		
+	game_clear.visible = true
+	game_clear.modulate.a = 0
+	var tween =  create_tween()
+	tween.tween_property(game_clear,"modulate:a",1.0,1.5)
+	await tween.finished
+	await get_tree().create_timer(5.0).timeout
+	SceneManager.change_scene("res://sceans/scean/title.tscn",{"pattern":"fade"})

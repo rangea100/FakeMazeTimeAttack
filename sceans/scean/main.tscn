@@ -1,29 +1,41 @@
-[gd_scene load_steps=28 format=3 uid="uid://dx8khweldt1o4"]
+[gd_scene load_steps=40 format=3 uid="uid://dx8khweldt1o4"]
 
-[ext_resource type="Script" uid="uid://dfysjojkjkmdp" path="res://sceans/character_body_3d.gd" id="1_if5bh"]
-[ext_resource type="Script" uid="uid://d31qd1bsgoqqi" path="res://sceans/main.gd" id="1_x0kff"]
-[ext_resource type="PackedScene" uid="uid://bey2wmtbl7nki" path="res://sceans/pause_menue.tscn" id="2_0o0wm"]
-[ext_resource type="Shader" uid="uid://bsltbxndxa2cv" path="res://sceans/noise.gdshader" id="2_q12lg"]
-[ext_resource type="Texture2D" uid="uid://btc1hktjgyq10" path="res://assets/透過用1.png" id="2_sytet"]
-[ext_resource type="Script" uid="uid://b6pawbtin0gse" path="res://sceans/player_ui.gd" id="2_wi7tx"]
-[ext_resource type="Texture2D" uid="uid://buajav5d2dc0f" path="res://assets/mapclip.png" id="4_2gtkq"]
-[ext_resource type="Texture2D" uid="uid://d4jsohh3oejwj" path="res://assets/background.png" id="4_yt73i"]
-[ext_resource type="Texture2D" uid="uid://b3xalwqlkon1b" path="res://assets/mapback.png" id="5_v578v"]
-[ext_resource type="Texture2D" uid="uid://0rbxm7vbpk67" path="res://assets/mapback2.png" id="6_v578v"]
-[ext_resource type="Texture2D" uid="uid://5wr4pqlwqkis" path="res://assets/meter_back_clip.png" id="9_tutu3"]
-[ext_resource type="Texture2D" uid="uid://bm0hjy5l1o0u0" path="res://assets/meter_back.png" id="10_5vvnq"]
-[ext_resource type="Texture2D" uid="uid://jw656qyli3db" path="res://assets/meter_gazi.png" id="11_x0kff"]
-[ext_resource type="MeshLibrary" uid="uid://bp5thngjj3clb" path="res://assets/mesh_liblary/labyrinth_tiles.tres" id="13_5vvnq"]
+[ext_resource type="Script" uid="uid://d31qd1bsgoqqi" path="res://sceans/gdscript/main.gd" id="1_q5r74"]
+[ext_resource type="Script" uid="uid://dfysjojkjkmdp" path="res://sceans/gdscript/character_body_3d.gd" id="2_46rxg"]
+[ext_resource type="Shader" uid="uid://bsltbxndxa2cv" path="res://sceans/noise.gdshader" id="3_mafpa"]
+[ext_resource type="Texture2D" uid="uid://dagc3ma5tkoey" path="res://assets/map_player.png" id="4_46rxg"]
+[ext_resource type="Script" uid="uid://b6pawbtin0gse" path="res://sceans/gdscript/player_ui.gd" id="4_lkgi4"]
+[ext_resource type="Texture2D" uid="uid://d4jsohh3oejwj" path="res://assets/background.png" id="5_pt6q5"]
+[ext_resource type="Texture2D" uid="uid://btc1hktjgyq10" path="res://assets/透過用1.png" id="6_ia2tj"]
+[ext_resource type="Texture2D" uid="uid://buajav5d2dc0f" path="res://assets/mapclip.png" id="7_odpam"]
+[ext_resource type="Texture2D" uid="uid://b3xalwqlkon1b" path="res://assets/mapback.png" id="8_u6xhb"]
+[ext_resource type="Texture2D" uid="uid://0rbxm7vbpk67" path="res://assets/mapback2.png" id="9_8b8pw"]
+[ext_resource type="Texture2D" uid="uid://co8dmtv4vrg4f" path="res://assets/mapex_mater.png" id="10_wsrw0"]
+[ext_resource type="Texture2D" uid="uid://5wr4pqlwqkis" path="res://assets/meter_back_clip.png" id="11_i5b6b"]
+[ext_resource type="Texture2D" uid="uid://bm0hjy5l1o0u0" path="res://assets/meter_back.png" id="12_ffjhg"]
+[ext_resource type="Texture2D" uid="uid://jw656qyli3db" path="res://assets/meter_gazi.png" id="13_4j2yi"]
+[ext_resource type="Script" uid="uid://1f16vdim5vb7" path="res://sceans/gdscript/skill.gd" id="14_46rxg"]
+[ext_resource type="Texture2D" uid="uid://4lv33eoagy5c" path="res://assets/item_buttery.png" id="18_mu14l"]
+[ext_resource type="Script" uid="uid://cya6vqrjt32nb" path="res://sceans/gdscript/stopwatch.gd" id="19_xutpm"]
+[ext_resource type="PackedScene" uid="uid://bey2wmtbl7nki" path="res://sceans/scean/pause_menue.tscn" id="20_8tusk"]
+[ext_resource type="PackedScene" uid="uid://gsdanpfko4y5" path="res://sceans/scean/skillButtonUI.tscn" id="20_mafpa"]
+[ext_resource type="MeshLibrary" uid="uid://bp5thngjj3clb" path="res://assets/mesh_liblary/labyrinth_tiles.tres" id="21_7lvgr"]
+[ext_resource type="Resource" uid="uid://bw7x3v6ouy5ky" path="res://sceans/skill2.tres" id="21_lkgi4"]
+[ext_resource type="Script" uid="uid://ci5scyli2xnn5" path="res://sceans/gdscript/skill_resoace.gd" id="22_pt6q5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0o0wm"]
+radius = 0.675
 height = 2.49091
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5r74"]
+size = Vector3(1, 2.5, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yt73i"]
-shader = ExtResource("2_q12lg")
+shader = ExtResource("3_mafpa")
 shader_parameter/noise_intensity = 0.5
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kqn4m"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.7, 0.825, 1, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_if5bh"]
@@ -34,12 +46,31 @@ background_mode = 2
 sky = SubResource("Sky_if5bh")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.24, 0, 0.172, 1)
+fog_light_energy = 0.38
+fog_density = 0.1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wi7tx"]
 viewport_path = NodePath("player/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2gtkq"]
 viewport_path = NodePath("player/minimap")
+
+[sub_resource type="Resource" id="Resource_ia2tj"]
+script = ExtResource("22_pt6q5")
+name = "buttery"
+icon = ExtResource("18_mu14l")
+max_uses = 3
+duration = 0.5
+key = "item_3"
+metadata/_custom_type_script = "uid://ci5scyli2xnn5"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46rxg"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="Theme" id="Theme_mafpa"]
+Label/styles/normal = SubResource("StyleBoxFlat_46rxg")
 
 [sub_resource type="Animation" id="Animation_sytet"]
 length = 0.001
@@ -283,6 +314,54 @@ tracks/19/keys = {
 "update": 0,
 "values": [100.0]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("player_ui/stopwatch:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("player_ui/stopwatch:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("player_ui/PlayerLabel:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("player_ui/PlayerLabel:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_v578v"]
 resource_name = "restoration_map"
@@ -315,7 +394,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_q12lg"]
 resource_name = "ui_on"
-length = 3.5
+length = 3.75
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -324,7 +403,7 @@ tracks/0/path = NodePath("player_ui/map/background:value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.75, 1.75),
+"times": PackedFloat32Array(0.99, 1.99),
 "transitions": PackedFloat32Array(3.86375, 0.297302),
 "update": 0,
 "values": [0.0, 100.0]
@@ -336,7 +415,7 @@ tracks/1/path = NodePath("player_ui/map/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.75, 3.25),
+"times": PackedFloat32Array(0, 1.99, 3.49),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -348,7 +427,7 @@ tracks/2/path = NodePath("player_ui/map/ProgressBar:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.75),
+"times": PackedFloat32Array(0, 1.99),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -360,7 +439,7 @@ tracks/3/path = NodePath("player_ui/map/ProgressBar:value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.75, 3.25),
+"times": PackedFloat32Array(1.99, 3.49),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 100.0]
@@ -372,7 +451,7 @@ tracks/4/path = NodePath("player_ui/map/Label:text")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.75, 2.08, 2.41, 2.71667),
+"times": PackedFloat32Array(1.99, 2.32, 2.65, 2.95667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": ["Lording", "Lording.", "Lording..", "Lording..."]
@@ -384,7 +463,7 @@ tracks/5/path = NodePath("player_ui/map/background:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.99),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -396,7 +475,7 @@ tracks/6/path = NodePath("player_ui/map:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.08333),
+"times": PackedFloat32Array(0, 1.32333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -408,7 +487,7 @@ tracks/7/path = NodePath("player_ui/map/viewmapcon:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(3.25, 3.375, 3.5),
+"times": PackedFloat32Array(3.49, 3.615, 3.74),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
@@ -420,7 +499,7 @@ tracks/8/path = NodePath("player_ui/map/viewmapcon:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 3.25),
+"times": PackedFloat32Array(0, 3.49),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -456,7 +535,7 @@ tracks/11/path = NodePath("player_ui/dark/dark:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0.25, 0.75),
+"times": PackedFloat32Array(0.49, 0.99),
 "transitions": PackedFloat32Array(0.5, 2.82843),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -324)]
@@ -468,7 +547,7 @@ tracks/12/path = NodePath("player_ui/dark/dark2:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0.25, 0.75),
+"times": PackedFloat32Array(0.49, 0.99),
 "transitions": PackedFloat32Array(0.615572, 1.8025),
 "update": 0,
 "values": [Vector2(0, 324), Vector2(0, 648)]
@@ -480,7 +559,7 @@ tracks/13/path = NodePath("player_ui/background:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.49),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -492,7 +571,7 @@ tracks/14/path = NodePath("player_ui/background2:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.49),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -504,7 +583,7 @@ tracks/15/path = NodePath("player_ui/background2:scale")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0.25, 0.75),
+"times": PackedFloat32Array(0.49, 0.99),
 "transitions": PackedFloat32Array(0.594604, 2.21914),
 "update": 0,
 "values": [Vector2(0.01, 0.01), Vector2(1, 1)]
@@ -516,7 +595,7 @@ tracks/16/path = NodePath("player_ui/view_but_meter_animetion:visible")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.99),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -528,7 +607,7 @@ tracks/17/path = NodePath("player_ui/view_but_meter_animetion:value")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(1.25, 1.75),
+"times": PackedFloat32Array(1.49, 1.99),
 "transitions": PackedFloat32Array(3.24901, 0.378929),
 "update": 0,
 "values": [0.0, 100.0]
@@ -540,10 +619,100 @@ tracks/18/path = NodePath("player_ui/view_but_meter_animetion/TextureProgressBar
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0, 1.75, 3.25),
+"times": PackedFloat32Array(0, 1.99, 3.49),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 100.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("player_ui/stopwatch:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 2.75, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("player_ui/stopwatch:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(2.75, 3),
+"transitions": PackedFloat32Array(0.203063, 2.2974),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/21/type = "method"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("player_ui/skill/SkillButton1")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(1.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animetion_play"
+}]
+}
+tracks/22/type = "method"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("player_ui/skill/SkillButton2")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animetion_play"
+}]
+}
+tracks/23/type = "method"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("player_ui/skill/SkillButton3")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(2.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animetion_play"
+}]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("player_ui/PlayerLabel:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 2.75, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("player_ui/PlayerLabel:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(2.75, 3),
+"transitions": PackedFloat32Array(0.203063, 2.2974),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wi7tx"]
@@ -588,15 +757,25 @@ _data = {
 }
 
 [node name="main" type="Node3D"]
-script = ExtResource("1_x0kff")
+script = ExtResource("1_q5r74")
+SIZE = 11
+metadata/_edit_vertical_guides_ = [227.0]
 
 [node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -27.391, 1.5, -26.6654)
-script = ExtResource("1_if5bh")
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.5, 1.5, 1.5)
+script = ExtResource("2_46rxg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.647517, 0)
 shape = SubResource("CapsuleShape3D_0o0wm")
+
+[node name="trap_hitbox" type="Area3D" parent="player"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="trap_collistion" type="CollisionShape3D" parent="player/trap_hitbox"]
+transform = Transform3D(1.16042, 0, 0, 0, 1, 0, 0, 0, 1.16042, 0, 0.647517, 0)
+shape = SubResource("BoxShape3D_q5r74")
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88015, 0)
@@ -618,7 +797,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.788235)
+color = Color(0, 0, 0, 0.823529)
 
 [node name="ColorRect" type="ColorRect" parent="player/Camera3D/noise"]
 material = SubResource("ShaderMaterial_yt73i")
@@ -630,7 +809,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="player"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 11.3036, 0)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 13, 0)
 remote_path = NodePath("../minimap/Camera3D")
 update_rotation = false
 
@@ -645,12 +824,12 @@ cull_mask = 1048571
 size = Vector2i(300, 300)
 
 [node name="Camera3D" type="Camera3D" parent="player/minimap"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -27.391, 12.8036, -26.6654)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.5, 14.5, 1.5)
 cull_mask = 1048573
 projection = 1
 size = 20.0
 
-[node name="ColorRect" type="ColorRect" parent="player/minimap"]
+[node name="TextureRect" type="TextureRect" parent="player/minimap"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -662,7 +841,8 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.8, 0, 1)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("4_46rxg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0o0wm")
@@ -671,10 +851,10 @@ environment = SubResource("Environment_0o0wm")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
-size = Vector3(57, 1, 57)
+size = Vector3(63, 1, 63)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -686,7 +866,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("2_wi7tx")
+script = ExtResource("4_lkgi4")
+item_3_count = 3
 
 [node name="background2" type="TextureRect" parent="CanvasLayer/player_ui"]
 modulate = Color(0.0705882, 0.858824, 0.92549, 0.14902)
@@ -697,7 +878,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
-texture = ExtResource("4_yt73i")
+texture = ExtResource("5_pt6q5")
 
 [node name="true_view" type="TextureRect" parent="CanvasLayer/player_ui"]
 visible = false
@@ -710,10 +891,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00621, 1)
 pivot_offset = Vector2(576, 324)
-texture = ExtResource("2_sytet")
+texture = ExtResource("6_ia2tj")
 
 [node name="Sprite2D" type="TextureRect" parent="CanvasLayer/player_ui/true_view"]
-modulate = Color(0.3153, 0.942973, 0, 1)
+modulate = Color(0.533021, 1, 0.415478, 1)
 layout_mode = 1
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -723,8 +904,10 @@ texture = SubResource("ViewportTexture_wi7tx")
 layout_mode = 1
 anchor_right = 0.196
 anchor_bottom = 0.347
-offset_right = 0.207993
-offset_bottom = 0.143997
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 8.20799
+offset_bottom = 12.144
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -736,13 +919,13 @@ offset_bottom = 300.0
 scale = Vector2(0.75, 0.75)
 value = 100.0
 fill_mode = 4
-texture_progress = ExtResource("4_2gtkq")
+texture_progress = ExtResource("7_odpam")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/player_ui/map/background"]
 layout_mode = 0
 offset_right = 300.0
 offset_bottom = 300.0
-texture = ExtResource("5_v578v")
+texture = ExtResource("8_u6xhb")
 
 [node name="Label" type="Label" parent="CanvasLayer/player_ui/map"]
 layout_mode = 0
@@ -773,13 +956,36 @@ offset_right = 303.0
 offset_bottom = 300.0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(3.55555, 1.77777)
-texture = ExtResource("6_v578v")
+texture = ExtResource("9_8b8pw")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/player_ui/map/viewmapcon/viewmap"]
 layout_mode = 1
 offset_right = 300.0
 offset_bottom = 300.0
 texture = SubResource("ViewportTexture_2gtkq")
+
+[node name="map_ex_bar" type="TextureProgressBar" parent="CanvasLayer/player_ui/map"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 313.0
+offset_bottom = 313.0
+scale = Vector2(0.75, 0.75)
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("10_wsrw0")
+tint_progress = Color(1, 1, 0, 1)
+
+[node name="truemap_bar" type="TextureProgressBar" parent="CanvasLayer/player_ui/map"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 224.0
+offset_bottom = 223.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("10_wsrw0")
+tint_progress = Color(0, 0, 1, 1)
 
 [node name="view_but_meter_animetion" type="TextureProgressBar" parent="CanvasLayer/player_ui"]
 visible = false
@@ -791,15 +997,15 @@ offset_right = 1149.0
 offset_bottom = 232.0
 value = 100.0
 nine_patch_stretch = true
-texture_progress = ExtResource("9_tutu3")
+texture_progress = ExtResource("11_i5b6b")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/player_ui/view_but_meter_animetion"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 value = 100.0
-texture_under = ExtResource("10_5vvnq")
-texture_progress = ExtResource("11_x0kff")
+texture_under = ExtResource("12_ffjhg")
+texture_progress = ExtResource("13_4j2yi")
 tint_progress = Color(0, 1, 0, 1)
 
 [node name="view_but_meter" type="TextureProgressBar" parent="CanvasLayer/player_ui"]
@@ -812,7 +1018,7 @@ offset_right = 1149.0
 offset_bottom = 232.0
 value = 100.0
 nine_patch_stretch = true
-texture_progress = ExtResource("9_tutu3")
+texture_progress = ExtResource("11_i5b6b")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/player_ui/view_but_meter"]
 layout_mode = 0
@@ -820,8 +1026,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 step = 0.01
 value = 100.0
-texture_under = ExtResource("10_5vvnq")
-texture_progress = ExtResource("11_x0kff")
+texture_under = ExtResource("12_ffjhg")
+texture_progress = ExtResource("13_4j2yi")
 tint_progress = Color(0, 1, 0, 1)
 
 [node name="signal_lost_text" type="Label" parent="CanvasLayer/player_ui"]
@@ -845,6 +1051,152 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.94902, 0.937255, 0.0941176)
 
+[node name="skill" type="Control" parent="CanvasLayer/player_ui"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_46rxg")
+
+[node name="SkillButton1" parent="CanvasLayer/player_ui/skill" instance=ExtResource("20_mafpa")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 37.0
+offset_top = 494.0
+offset_right = 101.0
+offset_bottom = 558.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SkillButton2" parent="CanvasLayer/player_ui/skill" instance=ExtResource("20_mafpa")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 163.0
+offset_top = 493.0
+offset_right = 227.0
+offset_bottom = 557.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_data = ExtResource("21_lkgi4")
+
+[node name="SkillButton3" parent="CanvasLayer/player_ui/skill" instance=ExtResource("20_mafpa")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 280.0
+offset_top = 492.0
+offset_right = 344.0
+offset_bottom = 556.0
+grow_horizontal = 1
+grow_vertical = 1
+skill_data = SubResource("Resource_ia2tj")
+
+[node name="stopwatch" type="Control" parent="CanvasLayer/player_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 293.0
+offset_top = 248.0
+offset_right = 333.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_xutpm")
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/player_ui/stopwatch"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "00:00.00"
+
+[node name="key_display" type="Control" parent="CanvasLayer/player_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/player_ui/key_display"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 595.0
+offset_right = 100.0
+offset_bottom = 631.0
+theme = SubResource("Theme_mafpa")
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/player_ui/key_display"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 598.0
+offset_right = 230.0
+offset_bottom = 634.0
+theme = SubResource("Theme_mafpa")
+theme_override_font_sizes/font_size = 32
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/player_ui/key_display"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 599.0
+offset_right = 342.0
+offset_bottom = 635.0
+theme = SubResource("Theme_mafpa")
+theme_override_font_sizes/font_size = 32
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/player_ui/key_display"]
+layout_mode = 0
+offset_left = 1114.0
+offset_top = 110.0
+offset_right = 1146.0
+offset_bottom = 146.0
+theme = SubResource("Theme_mafpa")
+theme_override_font_sizes/font_size = 32
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLabel" type="Label" parent="CanvasLayer/player_ui"]
+visible = false
+layout_mode = 0
+offset_left = 866.0
+offset_top = 539.0
+offset_right = 996.0
+offset_bottom = 559.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "プレイヤー名"
+
 [node name="dark" type="Control" parent="CanvasLayer/player_ui"]
 visible = false
 layout_mode = 1
@@ -859,7 +1211,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -324.0
+offset_top = -324.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -869,7 +1222,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 324.0
+offset_top = 648.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -880,16 +1234,74 @@ libraries = {
 &"": SubResource("AnimationLibrary_2gtkq")
 }
 
-[node name="pause_menue" parent="CanvasLayer" instance=ExtResource("2_0o0wm")]
+[node name="game_clear" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/game_clear"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/game_clear"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -48.0
+offset_right = 223.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave amp = 10.0 freq = 5.0]ゲームクリア"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/game_clear"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = 174.5
+offset_right = 296.0
+offset_bottom = 207.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "クリアタイムは--:--.--です。"
+
+[node name="pause_menue" parent="CanvasLayer" instance=ExtResource("20_8tusk")]
 visible = false
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 
 [node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 0, -31.5)
-mesh_library = ExtResource("13_5vvnq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+mesh_library = ExtResource("21_7lvgr")
 cell_size = Vector3(3, 1, 3)
 
+[connection signal="area_entered" from="player/trap_hitbox" to="CanvasLayer/player_ui" method="_on_trap_hitbox_body_entered"]
 [connection signal="animation_finished" from="CanvasLayer/player_ui/AnimationPlayer" to="player" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/player_ui/AnimationPlayer" to="CanvasLayer/player_ui" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="CanvasLayer/player_ui/AnimationPlayer" to="player" method="_on_animation_player_animation_started"]

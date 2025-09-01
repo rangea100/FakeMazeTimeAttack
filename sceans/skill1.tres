@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dg37vminxnt34"]
+
+[ext_resource type="Texture2D" uid="uid://c80yqxvubv6o3" path="res://assets/item_mapex.png" id="1_ivsjx"]
+[ext_resource type="Script" uid="uid://ci5scyli2xnn5" path="res://sceans/gdscript/skill_resoace.gd" id="2_nfip5"]
+
+[resource]
+script = ExtResource("2_nfip5")
+name = "mapexpansion"
+icon = ExtResource("1_ivsjx")
+max_uses = 3
+duration = 10.0
+key = "item_1"
+metadata/_custom_type_script = "uid://ci5scyli2xnn5"

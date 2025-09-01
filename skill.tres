@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://b35bmwtbdnvwh"]
+
+[ext_resource type="Script" uid="uid://ci5scyli2xnn5" path="res://sceans/gdscript/skill_resoace.gd" id="1_t8sfy"]
+
+[resource]
+script = ExtResource("1_t8sfy")
+name = ""
+key = "ui_accept"
+max_uses = 3
+duration = 5.0
+metadata/_custom_type_script = "uid://ci5scyli2xnn5"

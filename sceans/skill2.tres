@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://bw7x3v6ouy5ky"]
+
+[ext_resource type="Texture2D" uid="uid://gkcsq6ihx1x5" path="res://assets/item_truemap.png" id="1_2134q"]
+[ext_resource type="Script" uid="uid://ci5scyli2xnn5" path="res://sceans/gdscript/skill_resoace.gd" id="1_s6lg7"]
+
+[resource]
+script = ExtResource("1_s6lg7")
+name = "truemap"
+icon = ExtResource("1_2134q")
+max_uses = 1
+duration = 10.0
+key = "item_2"
+metadata/_custom_type_script = "uid://ci5scyli2xnn5"
