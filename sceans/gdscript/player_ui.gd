@@ -94,7 +94,8 @@ func _process(delta: float) -> void:
 				animation_player.play("view_off")
 				using_item=false
 	if Input.is_action_just_pressed("y")and use_ui:
-		SignalManager.on_game_compleat.emit()
+		if Settings.develoer_mode:
+			SignalManager.on_game_compleat.emit()
 func _update_size() -> void:
 	true_view.pivot_offset = size/2
 	viewmap.pivot_offset = map.size/2
