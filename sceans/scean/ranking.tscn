@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c74q4gpxfvsd8"]
+[gd_scene load_steps=12 format=3 uid="uid://c74q4gpxfvsd8"]
 
 [ext_resource type="Script" uid="uid://cttsybyfd5yxr" path="res://sceans/scean/ranking.gd" id="1_pf6hk"]
+[ext_resource type="Texture2D" uid="uid://dmh2bo5l2ewyt" path="res://assets/filterbutton.png" id="2_tpykr"]
+[ext_resource type="Texture2D" uid="uid://omslv2lrf6h7" path="res://assets/filterbutton_hover.png" id="3_lddyq"]
+[ext_resource type="Texture2D" uid="uid://cvd3k6rjyyw35" path="res://assets/ui_tema/pannel/pannel2.png" id="4_32ijq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3i72e"]
+texture = ExtResource("4_32ijq")
 
 [sub_resource type="Animation" id="Animation_tpykr"]
 length = 0.001
@@ -15,6 +21,88 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/filter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(90, 71)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/filter:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mm8ac"]
+resource_name = "filter_setting_off"
+length = 0.25
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/filter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.435275, 2.54912),
+"update": 0,
+"values": [Vector2(99, 76), Vector2(99, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/filter:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.68302, 1.93187),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.121569)]
+}
+
+[sub_resource type="Animation" id="Animation_3i72e"]
+resource_name = "filter_setting_on"
+length = 0.25
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/filter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.329877, 2.07053),
+"update": 0,
+"values": [Vector2(99, 600), Vector2(99, 76)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/filter:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.353554, 2.82843),
+"update": 0,
+"values": [Color(1, 1, 1, 0.121569), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_lddyq"]
@@ -54,6 +142,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32ijq"]
 _data = {
 &"RESET": SubResource("Animation_tpykr"),
+&"filter_setting_off": SubResource("Animation_mm8ac"),
+&"filter_setting_on": SubResource("Animation_3i72e"),
 &"ranking_off": SubResource("Animation_lddyq"),
 &"ranking_on": SubResource("Animation_mx50r")
 }
@@ -222,6 +312,100 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "もどる"
 
+[node name="FilterButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 738.0
+offset_top = 27.0
+offset_right = 801.0
+offset_bottom = 83.0
+texture_normal = ExtResource("2_tpykr")
+texture_hover = ExtResource("3_lddyq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="filter" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -372.0
+offset_top = -210.0
+offset_right = 354.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3i72e")
+
+[node name="Label" type="Label" parent="Panel/filter"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 25.0
+offset_right = 435.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 32
+text = "フィルター"
+
+[node name="GridContainer" type="GridContainer" parent="Panel/filter"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 111.0
+offset_right = 625.0
+offset_bottom = 350.0
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="ItemOn" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "アイテムON"
+
+[node name="ItemOff" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "アイテムOFF"
+
+[node name="TrapOn" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "トラップON"
+
+[node name="TrapOff" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "トラップOFF
+"
+
+[node name="DarkOn" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "暗闇ON
+"
+
+[node name="DarkOff" type="CheckBox" parent="Panel/filter/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "暗闇OFF"
+
+[node name="back" type="Button" parent="Panel/filter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 149.5
+offset_right = 59.0
+offset_bottom = 190.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "もどる"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_32ijq")
@@ -237,4 +421,6 @@ auto_translate_mode = 1
 [connection signal="pressed" from="Panel/TabContainer/開発者特権/load" to="." method="load_json_dialog"]
 [connection signal="pressed" from="Panel/TabContainer/開発者特権/clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="Panel/back" to="." method="hide_ranking"]
+[connection signal="pressed" from="Panel/FilterButton" to="." method="_on_filter_button_pressed"]
+[connection signal="pressed" from="Panel/filter/back" to="." method="_on_back_pressed"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

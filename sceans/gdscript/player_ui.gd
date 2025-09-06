@@ -12,6 +12,7 @@ extends Control
 @onready var stopwatch: Control = $stopwatch
 @onready var skill: SkillManager = $skill
 @onready var game_clear: Control = $"../game_clear"
+@onready var main: Node3D = $"../.."
 
 @export var drain_time: float = 7.5 
 @export var recovery_time: float = 15.0
@@ -40,7 +41,7 @@ func _ready() -> void:
 	view_but_bar.value = 100
 	skill.set_all_skills_notskill(true)
 	SignalManager.on_game_compleat.connect(_on_game_complete)
-	AudioManager.play_BGM("res://assets/sound/BGM1.ogg",0.0,0.0,1.0,true)
+	AudioManager.play_BGM("res://assets/sound/音ゲー.ogg",0.0,0.0,1.0,true)
 	#await wait_for_key("e")
 	await get_tree().create_timer(1.5).timeout
 	animation_player.play("ui_on")
@@ -55,9 +56,11 @@ func _process(delta: float) -> void:
 	$map/truemap_bar.value= ($skill/SkillButton2.time_left / $skill/SkillButton2.wait_time) * 10
 	if Settings.map_rotaition:
 		$"../../player/minimap/TextureRect".rotation = 0
+		$"../../player/minimap/North".rotation = $"../../player".rotation.y
 		$"../../player/minimap/Camera3D".rotation.y = $"../../player".rotation.y
 	else:
 		$"../../player/minimap/Camera3D".rotation.y = 0
+		$"../../player/minimap/North".rotation = 0
 		$"../../player/minimap/TextureRect".rotation = -$"../../player".rotation.y
 	if using_item and can_use:
 		view_but_bar.value -= (view_but_bar.max_value / drain_time) * delta
@@ -91,7 +94,7 @@ func _process(delta: float) -> void:
 				animation_player.play("view_off")
 				using_item=false
 	if Input.is_action_just_pressed("y")and use_ui:
-		signal_lost(10.0)
+		SignalManager.on_game_compleat.emit()
 func _update_size() -> void:
 	true_view.pivot_offset = size/2
 	viewmap.pivot_offset = map.size/2
@@ -155,6 +158,10 @@ func _on_game_complete() -> void:
 	game_clear.modulate.a = 0
 	var tween =  create_tween()
 	tween.tween_property(game_clear,"modulate:a",1.0,1.5)
+	print("game_clea")
+	main.show_path(main.path,main.wait)
 	await tween.finished
-	await get_tree().create_timer(5.0).timeout
+
+func _on_main_path_drawn_completed() -> void:
+	await get_tree().create_timer(2.0).timeout
 	SceneManager.change_scene("res://sceans/scean/title.tscn",{"pattern":"fade"})

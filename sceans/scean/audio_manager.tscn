@@ -78,6 +78,7 @@ bus = &"SE"
 bus = &"Environment"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="BGMDisplay" type="Control" parent="CanvasLayer"]
 layout_mode = 3

@@ -1,7 +1,7 @@
 extends Node3D
 @onready var gridmap: GridMap = $GridMap
 @onready var floor: CSGBox3D = $floor
-
+signal path_drawn_completed
 
 const INBIGIBLE_MARKER_ID = 1 # MeshLibrary に登録したマーカー用ブロックのID
 const PROJECTION_MARKER_ID = 2
@@ -10,28 +10,39 @@ const GOAL_MARKER_ID = 6
 @export var SIZE :int= 21
 var combined_grid : Array = []
 var trap_count: int
+var center: Vector3
+var grid1: Array
+var path
+var wait
 func _ready():
+	print("ready!")
 	# 好きなサイズを設定
 	SIZE = Settings.map_size
 	match SIZE:
 		11:
 			trap_count = 5
+			wait = 0.1
 		21:
 			trap_count = 10
+			wait = 0.05
 		31:
 			trap_count = 20
+			wait = 0.03
 		41:
 			trap_count = 30
+			wait = 0.03
 		85:
 			trap_count = 60
+			wait = 0.01
 	var w: float = (SIZE-1)*3
 	var h: float = 1.0
 	var d: float = (SIZE-1)*3
+	center = Vector3(w/2, -h/2, d/2)
 	floor.size = Vector3(w, h, d)
 	$WorldEnvironment.environment.fog_density = (0.5 if Settings.dark_mode else 0.1)
 # 左上基準にしたいので、半分分だけマイナス方向にずらす
 	floor.position = Vector3(w/2, -h/2, d/2)
-	var grid1 = generate_maze()
+	grid1 = generate_maze()
 	var grid2 = generate_maze()
 	combined_grid = combine_grids(grid1, grid2)
 	if Settings.trap_installation:
@@ -43,6 +54,10 @@ func _ready():
 	place_combined_grid()
 	#girtmap置き換え
 	replace_grit()
+	path = find_path(Vector2i(1,1), Vector2i(SIZE-2, SIZE-2))
+	print("経路長:", path.size())
+	if path.size() == 0:
+		print("経路が見つかりませんでした")
 
 func replace_grit() -> void:
 	for cell in gridmap.get_used_cells():
@@ -187,3 +202,46 @@ func place_combined_grid():
 				6: gridmap.set_cell_item(Vector3i(x, 0, y), 5)#トラップ
 				7: gridmap.set_cell_item(Vector3i(x, 0, y), 6)
 				_: pass # 通路は何も置かない
+
+# === A*探索 ===
+func find_path(start:Vector2i, goal:Vector2i) -> Array:
+	grid1[start.x][start.y] = 0
+	grid1[goal.x][goal.y] = 0
+	
+	var astar = AStar2D.new()
+	var id = 0
+	var ids = {}
+	
+	# 通れるマスだけ登録
+	for x in range(SIZE):
+		for y in range(SIZE):
+			if grid1[x][y] == 0:
+				astar.add_point(id, Vector2(x,y))
+				ids[Vector2i(x,y)] = id
+				id += 1
+
+	# 4方向を確認して「両方とも道(0)」なら接続
+	var dirs = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
+	for pos in ids.keys():
+		for d in dirs:
+			var np = pos + d
+			if ids.has(np):
+				# pos と np の両方が 0 なら接続
+				if grid1[pos.x][pos.y] == 0 and grid1[np.x][np.y] == 0:
+					astar.connect_points(ids[pos], ids[np], false) # 双方向接続
+
+	if ids.has(start) and ids.has(goal):
+		return astar.get_point_path(ids[start], ids[goal])
+	return []
+
+
+# === 経路を7で徐々に表示 ===
+func show_path(path:Array,wait:float) -> void:
+	for p in path:
+		var maze_x = int(p.x)
+		var maze_y = int(p.y)
+
+		# GridMap は X,Z なので maze の行列に合わせて Z に maze_y を設定
+		gridmap.set_cell_item(Vector3i(maze_y, 0, maze_x), 7)
+		await get_tree().create_timer(wait).timeout
+	emit_signal("path_drawn_completed")

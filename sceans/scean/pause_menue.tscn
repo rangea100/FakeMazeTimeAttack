@@ -1,7 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bey2wmtbl7nki"]
+[gd_scene load_steps=11 format=3 uid="uid://bey2wmtbl7nki"]
 
+[ext_resource type="Theme" uid="uid://cv50vybyyb5tv" path="res://assets/ui_tema/ui_thema.tres" id="1_54srr"]
 [ext_resource type="Script" uid="uid://c232m88cekh80" path="res://sceans/gdscript/pause_menue.gd" id="1_m6dkm"]
 [ext_resource type="PackedScene" uid="uid://ci5sk515mtrsf" path="res://sceans/scean/options.tscn" id="2_ygd0d"]
+[ext_resource type="Texture2D" uid="uid://dupaq5pnhqwko" path="res://assets/ui_tema/pannel/pannel3.png" id="4_t0d8f"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju8g1"]
+texture = ExtResource("4_t0d8f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ol2qv"]
+texture = ExtResource("4_t0d8f")
 
 [sub_resource type="Animation" id="Animation_ygd0d"]
 length = 0.001
@@ -67,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_54srr")
 script = ExtResource("1_m6dkm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -134,6 +143,7 @@ text = "終わる"
 [node name="options" parent="." instance=ExtResource("2_ygd0d")]
 visible = false
 layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_ju8g1")
 
 [node name="finish_menu" type="Panel" parent="."]
 visible = false
@@ -150,6 +160,7 @@ offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(287, 109)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ol2qv")
 
 [node name="Label" type="Label" parent="finish_menu"]
 layout_mode = 1

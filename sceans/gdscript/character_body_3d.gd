@@ -69,3 +69,13 @@ func _on_game_complete() -> void:
 	can_move = false
 	velocity.x = 0
 	velocity.z = 0
+	$"../Camera3D".current = true
+	$"../Camera3D".position = $"..".center
+	$"../Camera3D".position.y = 50
+	match Settings.map_size:
+		11,21:
+			$"../Camera3D".size = 100
+		31,41:
+			$"../Camera3D".size = 200
+		85:
+			$"../Camera3D".size = 400

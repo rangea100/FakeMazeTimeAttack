@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2tnjjytb8f02"]
+[gd_scene load_steps=13 format=3 uid="uid://b2tnjjytb8f02"]
 
 [ext_resource type="BoxMesh" uid="uid://cy87p1odyte7o" path="res://sceans/labyrinth_tiles.tres" id="1_uwww0"]
 
@@ -32,6 +32,13 @@ albedo_color = Color(0, 1, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_jp1j7"]
 material = SubResource("StandardMaterial3D_hl2gq")
 size = Vector3(3, 10, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwww0"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k4coi"]
+material = SubResource("StandardMaterial3D_uwww0")
+size = Vector3(3, 1, 3)
 
 [node name="Labyrinth_Tiles" type="Node3D"]
 
@@ -79,3 +86,7 @@ mesh = SubResource("BoxMesh_xdi57")
 [node name="goal_marker" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("BoxMesh_xdi57")
+
+[node name="goal_way" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_k4coi")

@@ -1,0 +1,85 @@
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://cv50vybyyb5tv"]
+
+[ext_resource type="Texture2D" uid="uid://d2sbels811ly1" path="res://assets/ui_tema/button/button_disable.png" id="1_qlapk"]
+[ext_resource type="Texture2D" uid="uid://bpriqo1501jyi" path="res://assets/ui_tema/button/button_focus.png" id="2_n5rfe"]
+[ext_resource type="Texture2D" uid="uid://hisu4gisbetu" path="res://assets/ui_tema/button/button_hover.png" id="3_7858o"]
+[ext_resource type="Texture2D" uid="uid://c46khwpjm5ar6" path="res://assets/ui_tema/button/button.png" id="4_4os2e"]
+[ext_resource type="Texture2D" uid="uid://bbcywmjh4my7t" path="res://assets/ui_tema/button/button_pressed.png" id="5_ox1y0"]
+[ext_resource type="Texture2D" uid="uid://dltvsrxdv0pkh" path="res://assets/ui_tema/button/check_button/checked.png" id="6_7s6ru"]
+[ext_resource type="Texture2D" uid="uid://36bil6punc1k" path="res://assets/ui_tema/button/check_button/checked_disabled.png" id="7_chttw"]
+[ext_resource type="Texture2D" uid="uid://b3jjf66w7u1fd" path="res://assets/ui_tema/button/check_button/unchecked.png" id="8_xaakl"]
+[ext_resource type="Texture2D" uid="uid://cas7s88wbmeg" path="res://assets/ui_tema/button/check_button/unchecked_disabled.png" id="9_07irb"]
+[ext_resource type="Texture2D" uid="uid://ck1pwa6hn8a60" path="res://assets/ui_tema/pannel.png" id="10_ofxgf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ln283"]
+texture = ExtResource("1_qlapk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6iro1"]
+texture = ExtResource("2_n5rfe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iixuf"]
+texture = ExtResource("3_7858o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp07s"]
+texture = ExtResource("4_4os2e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxqeb"]
+texture = ExtResource("5_ox1y0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln283"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxqeb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d617v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_026e8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxqeb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h08id"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bu1pm"]
+texture = ExtResource("10_ofxgf")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf8p8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlapk"]
+texture = ExtResource("1_qlapk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n5rfe"]
+texture = ExtResource("2_n5rfe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7858o"]
+texture = ExtResource("3_7858o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4os2e"]
+texture = ExtResource("5_ox1y0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ox1y0"]
+texture = ExtResource("4_4os2e")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxTexture_ln283")
+Button/styles/focus = SubResource("StyleBoxTexture_6iro1")
+Button/styles/hover = SubResource("StyleBoxTexture_iixuf")
+Button/styles/normal = SubResource("StyleBoxTexture_dp07s")
+Button/styles/pressed = SubResource("StyleBoxTexture_rxqeb")
+CheckButton/icons/checked = ExtResource("6_7s6ru")
+CheckButton/icons/checked_disabled = ExtResource("7_chttw")
+CheckButton/icons/unchecked = ExtResource("8_xaakl")
+CheckButton/icons/unchecked_disabled = ExtResource("9_07irb")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_ln283")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_rxqeb")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_d617v")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_026e8")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_rxqeb")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_h08id")
+Panel/styles/panel = SubResource("StyleBoxTexture_bu1pm")
+TabContainer/styles/panel = SubResource("StyleBoxEmpty_pf8p8")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_qlapk")
+TabContainer/styles/tab_focus = SubResource("StyleBoxTexture_n5rfe")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_7858o")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_4os2e")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_ox1y0")
