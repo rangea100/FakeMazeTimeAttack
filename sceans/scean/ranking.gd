@@ -10,6 +10,9 @@ extends Control
 @onready var file_dialog: FileDialog = $FileDialog
 @onready var tab_container: TabContainer = $Panel/TabContainer
 @onready var load_file_dialog: FileDialog = $LoadFileDialog
+@onready var filter: Panel = $Panel/filter
+@onready var filter_button: TextureButton = $Panel/FilterButton
+
 
 signal ranking_off
 var _11:int = 0
@@ -28,7 +31,19 @@ func _ready():
 	load_file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	load_file_dialog.filters = ["*.json ; JSON Files"]
 	ui_on = true
+	for child in $Panel/filter/GridContainer.get_children():
+		if child is CheckBox:
+			child.toggled.connect(_on_filter_checkbox_toggled.bind(child))
 func _process(delta: float) -> void:
+	Settings.filter = Settings.filter_setting.any(
+	func(sub): return sub.any(func(v): return v)
+)
+	if Settings.filter:
+		filter_button.texture_normal = preload("res://assets/filterbutton_on.png")
+		filter_button.texture_hover = preload("res://assets/filterbutton_on_hover.png")
+	else:
+		filter_button.texture_normal = preload("res://assets/filterbutton.png")
+		filter_button.texture_hover = preload("res://assets/filterbutton_hover.png")
 	if Settings.develoer_mode:
 		tab_container.set_tab_hidden(5,false)
 	else:
@@ -128,3 +143,45 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 	if ui_on:
 		AudioManager.play_SE("res://assets/sound/select.mp3")
 	
+
+
+func _on_filter_button_pressed() -> void:
+	AudioManager.play_SE("res://assets/sound/select.mp3")
+	filter.visible = true
+	animation_player.play("filter_setting_on")
+	_set_disabled_recursive(self,true)
+	_set_disabled_recursive(filter,false)
+
+func _on_back_pressed() -> void:
+	AudioManager.play_SE("res://assets/sound/off.mp3")
+	animation_player.play("filter_setting_off")
+	await animation_player.animation_finished
+	filter.visible = false
+	_set_disabled_recursive(self,false)
+
+func _on_filter_checkbox_toggled(button_pressed: bool, checkbox: CheckBox) -> void:
+	AudioManager.play_SE("res://assets/sound/select.mp3")
+	match checkbox.name:
+		"ItemOn":
+			Settings.filter_setting[0][0] = button_pressed
+		"ItemOff":
+			Settings.filter_setting[0][1] = button_pressed
+		"TrapOn":
+			Settings.filter_setting[1][0] = button_pressed
+		"TrapOff":
+			Settings.filter_setting[1][1] = button_pressed
+		"DarkOn":
+			Settings.filter_setting[2][0] = button_pressed
+		"DarkOff":
+			Settings.filter_setting[2][1] = button_pressed
+	#print(Settings.filter_setting,Settings.filter)
+func _set_disabled_recursive(node: Node, disable: bool) -> void:
+	for child in node.get_children():
+		if child is Control:
+			# "disabled" プロパティを持つUIは無効化
+			if "disabled" in child:
+				child.disabled = disable
+			# クリックを受けないようにする
+			child.mouse_filter = Control.MOUSE_FILTER_IGNORE if disable else Control.MOUSE_FILTER_PASS
+			# さらに子供がいるなら再帰的に処理
+			_set_disabled_recursive(child, disable)

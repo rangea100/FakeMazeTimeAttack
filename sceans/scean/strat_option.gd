@@ -91,6 +91,12 @@ func _on_back_pressed() -> void:
 func _on_start_pressed() -> void:
 	AudioManager.play_SE("res://assets/sound/check.mp3")
 	start_chek.visible = true
+	if player_name.text == "":
+		$start_chek/no_player.visible = true
+		$start_chek/Label.visible = false
+	else:
+		$start_chek/no_player.visible =false
+		$start_chek/Label.visible = true
 	animation_player.play("chek_start_on")
 	_set_disabled_recursive(self, true)
 	_set_disabled_recursive(start_chek, false)
@@ -102,7 +108,9 @@ func _on_back_start_check_pressed() -> void:
 	await animation_player.animation_finished
 	start_chek.visible = false
 	_set_disabled_recursive(self, false)
-	#_on_advanced_setting_button_toggled(advanced_setting_button.button_pressed)
+	ui_on = false
+	_on_advanced_setting_button_toggled(advanced_setting_button.button_pressed)
+	ui_on = true
 
 
 func _on_start_start_chek_pressed() -> void:

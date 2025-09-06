@@ -1,15 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://rbwa4lkpmwc5"]
+[gd_scene load_steps=17 format=3 uid="uid://rbwa4lkpmwc5"]
 
+[ext_resource type="Theme" uid="uid://cv50vybyyb5tv" path="res://assets/ui_tema/ui_thema.tres" id="1_bu1pm"]
 [ext_resource type="Script" uid="uid://bmwqjkhxg77us" path="res://sceans/gdscript/title.gd" id="1_qy0sv"]
 [ext_resource type="PackedScene" uid="uid://ci5sk515mtrsf" path="res://sceans/scean/options.tscn" id="2_7u8id"]
 [ext_resource type="Script" uid="uid://b8u5m111wgknx" path="res://sceans/scean/strat_option.gd" id="3_7u8id"]
+[ext_resource type="Texture2D" uid="uid://b72xm8s042p66" path="res://assets/background_game.png" id="3_iixuf"]
+[ext_resource type="Texture2D" uid="uid://dupaq5pnhqwko" path="res://assets/ui_tema/pannel/pannel3.png" id="4_dp07s"]
 [ext_resource type="PackedScene" uid="uid://c74q4gpxfvsd8" path="res://sceans/scean/ranking.tscn" id="4_rbnig"]
+[ext_resource type="Texture2D" uid="uid://cvd3k6rjyyw35" path="res://assets/ui_tema/pannel/pannel2.png" id="14_ed4po"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7u8id"]
-bg_color = Color(0.27, 0.27, 0.27, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iixuf"]
+texture = ExtResource("4_dp07s")
 
-[sub_resource type="Theme" id="Theme_rbnig"]
-Panel/styles/panel = SubResource("StyleBoxFlat_7u8id")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48ybr"]
+texture = ExtResource("14_ed4po")
 
 [sub_resource type="Animation" id="Animation_bu1pm"]
 length = 0.001
@@ -122,9 +126,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_bu1pm")
 script = ExtResource("1_qy0sv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+texture = ExtResource("3_iixuf")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.462745, 1, 1, 0.211765)
+
+[node name="title_button" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -239.0
+offset_right = 367.0
+offset_bottom = 239.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="title_button"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -143,25 +180,25 @@ text = "[shake rate=20 level=20]3D迷路(仮)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="title_button"]
 layout_mode = 0
-offset_left = 463.0
-offset_top = 276.0
-offset_right = 626.0
-offset_bottom = 526.0
+offset_left = 254.0
+offset_top = 191.0
+offset_right = 417.0
+offset_bottom = 441.0
 theme_override_constants/separation = 32
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="title_button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "スタート"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Button3" type="Button" parent="title_button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "設定"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button2" type="Button" parent="title_button/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "終了"
@@ -169,6 +206,7 @@ text = "終了"
 [node name="options" parent="." instance=ExtResource("2_7u8id")]
 visible = false
 layout_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_iixuf")
 
 [node name="start_option" type="Panel" parent="."]
 visible = false
@@ -274,6 +312,7 @@ columns = 2
 [node name="MapSize" type="OptionButton" parent="start_option/AdvancedSetting/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+alignment = 1
 selected = 1
 item_count = 5
 popup/item_0/text = "11x11"
@@ -376,7 +415,7 @@ offset_bottom = 83.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(217.5, 87.5)
-theme = SubResource("Theme_rbnig")
+theme_override_styles/panel = SubResource("StyleBoxTexture_48ybr")
 
 [node name="Label" type="Label" parent="start_option/start_chek"]
 layout_mode = 0
@@ -387,6 +426,19 @@ offset_bottom = 82.5
 theme_override_font_sizes/font_size = 32
 text = "本当にこの設定で
 はじめますか？"
+horizontal_alignment = 1
+
+[node name="no_player" type="Label" parent="start_option/start_chek"]
+visible = false
+layout_mode = 0
+offset_left = 53.5
+offset_top = 12.5
+offset_right = 391.5
+offset_bottom = 93.5
+theme_override_font_sizes/font_size = 25
+text = "名前が設定されていない場合
+ランキングに乗りません
+よろしいですか？"
 horizontal_alignment = 1
 
 [node name="start" type="Button" parent="start_option/start_chek"]
@@ -446,9 +498,9 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "ランキング"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_end_pressed"]
+[connection signal="pressed" from="title_button/VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="title_button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="title_button/VBoxContainer/Button2" to="." method="_on_end_pressed"]
 [connection signal="option_offed" from="options" to="." method="_on_options_option_offed"]
 [connection signal="start_option_offed" from="start_option" to="." method="_on_start_option_offed"]
 [connection signal="toggled" from="start_option/AdvancedSettingButton" to="start_option" method="_on_advanced_setting_button_toggled"]

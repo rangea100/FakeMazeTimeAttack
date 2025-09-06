@@ -14,3 +14,7 @@ var  item_can_use:bool = true
 var trap_installation:bool = true
 var dark_mode:bool = false
 var regulation:Array
+
+#フィルター設定
+var filter_setting:Array = [[false,false],[false,false],[false,false]]
+var filter:bool = false
