@@ -18,3 +18,4 @@ var regulation:Array
 #フィルター設定
 var filter_setting:Array = [[false,false],[false,false],[false,false]]
 var filter:bool = false
+var name_filter:String

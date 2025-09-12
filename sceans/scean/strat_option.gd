@@ -117,7 +117,8 @@ func _on_start_start_chek_pressed() -> void:
 	AudioManager.play_SE("res://assets/sound/start.mp3")
 	Settings.player_name = player_name.text
 	Settings.regulation = [Settings.item_can_use,Settings.trap_installation,Settings.dark_mode]
-	SceneManager.change_scene("res://sceans/scean/main.tscn",{"pattarn":"fade"})
+	#SceneManager.change_scene("res://sceans/scean/main.tscn",{"pattern": "circle"})
+	SceneManager.change_scene_loading("res://sceans/scean/main.tscn",{"pattern": "fade","speed":10})
 
 
 

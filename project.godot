@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="3dゲームテスト"
+config/name="3d迷路(仮)"
 run/main_scene="uid://rbwa4lkpmwc5"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.215686, 0.247059, 0.278431, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://jwayj13v8r0x"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 

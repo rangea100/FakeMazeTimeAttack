@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c74q4gpxfvsd8"]
+[gd_scene load_steps=15 format=3 uid="uid://c74q4gpxfvsd8"]
 
 [ext_resource type="Script" uid="uid://cttsybyfd5yxr" path="res://sceans/scean/ranking.gd" id="1_pf6hk"]
 [ext_resource type="Texture2D" uid="uid://dmh2bo5l2ewyt" path="res://assets/filterbutton.png" id="2_tpykr"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cvd3k6rjyyw35" path="res://assets/ui_tema/pannel/pannel2.png" id="4_32ijq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3i72e"]
+texture = ExtResource("4_32ijq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32ijq"]
 texture = ExtResource("4_32ijq")
 
 [sub_resource type="Animation" id="Animation_tpykr"]
@@ -45,6 +48,50 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/delete_chek:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u25ft"]
+resource_name = "delete_check_off"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/delete_chek:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.378929, 2.92818),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fqr6g"]
+resource_name = "delete_check_on"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/delete_chek:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.406126, 2.14355),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_mm8ac"]
@@ -142,6 +189,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_32ijq"]
 _data = {
 &"RESET": SubResource("Animation_tpykr"),
+&"delete_check_off": SubResource("Animation_u25ft"),
+&"delete_check_on": SubResource("Animation_fqr6g"),
 &"filter_setting_off": SubResource("Animation_mm8ac"),
 &"filter_setting_on": SubResource("Animation_3i72e"),
 &"ranking_off": SubResource("Animation_lddyq"),
@@ -406,6 +455,96 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "もどる"
 
+[node name="name_filter_label" type="Label" parent="Panel/filter"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 316.0
+offset_right = 255.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 25
+text = "名前フィルター"
+
+[node name="name_filter" type="LineEdit" parent="Panel/filter"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 354.0
+offset_right = 265.0
+offset_bottom = 386.0
+max_length = 10
+
+[node name="delete_chek" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = -83.5
+offset_right = 217.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(217.5, 87.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_32ijq")
+
+[node name="Label" type="Label" parent="Panel/delete_chek"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 17.5
+offset_right = 394.0
+offset_bottom = 86.5
+theme_override_font_sizes/font_size = 32
+text = "データを削除します
+本当によろしいですか"
+horizontal_alignment = 1
+
+[node name="no_player" type="Label" parent="Panel/delete_chek"]
+visible = false
+layout_mode = 0
+offset_left = 53.5
+offset_top = 12.5
+offset_right = 391.5
+offset_bottom = 93.5
+theme_override_font_sizes/font_size = 25
+text = "名前が設定されていない場合
+ランキングに乗りません
+よろしいですか？"
+horizontal_alignment = 1
+
+[node name="delete" type="Button" parent="Panel/delete_chek"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.5
+offset_top = 17.0
+offset_right = 164.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "消す"
+
+[node name="back" type="Button" parent="Panel/delete_chek"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = 17.0
+offset_right = -14.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "もどる"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_32ijq")
@@ -419,8 +558,11 @@ auto_translate_mode = 1
 [connection signal="tab_changed" from="Panel/TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="pressed" from="Panel/TabContainer/開発者特権/export" to="." method="save_json_dialog"]
 [connection signal="pressed" from="Panel/TabContainer/開発者特権/load" to="." method="load_json_dialog"]
-[connection signal="pressed" from="Panel/TabContainer/開発者特権/clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/開発者特権/clear" to="." method="_on_clear_on_pressed"]
 [connection signal="pressed" from="Panel/back" to="." method="hide_ranking"]
 [connection signal="pressed" from="Panel/FilterButton" to="." method="_on_filter_button_pressed"]
 [connection signal="pressed" from="Panel/filter/back" to="." method="_on_back_pressed"]
+[connection signal="text_changed" from="Panel/filter/name_filter" to="." method="_on_name_filter_text_changed"]
+[connection signal="pressed" from="Panel/delete_chek/delete" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="Panel/delete_chek/back" to="." method="_on_back_delete_pressed"]
 [connection signal="file_selected" from="LoadFileDialog" to="." method="_on_load_file_dialog_file_selected"]

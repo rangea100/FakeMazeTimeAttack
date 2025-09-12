@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	Settings.filter = Settings.filter_setting.any(
 	func(sub): return sub.any(func(v): return v)
 )
-	if Settings.filter:
+	if Settings.filter or not Settings.name_filter == "":
 		filter_button.texture_normal = preload("res://assets/filterbutton_on.png")
 		filter_button.texture_hover = preload("res://assets/filterbutton_on_hover.png")
 	else:
@@ -137,6 +137,10 @@ func _on_load_file_dialog_file_selected(path: String) -> void:
 func _on_clear_pressed() -> void:
 	RankingSave.clear_ranking()
 	show_ranking()
+	animation_player.play("delete_check_off")
+	await animation_player.animation_finished
+	$Panel/delete_chek.visible = false
+	_set_disabled_recursive(self,false)
 
 
 func _on_tab_container_tab_changed(tab: int) -> void:
@@ -185,3 +189,21 @@ func _set_disabled_recursive(node: Node, disable: bool) -> void:
 			child.mouse_filter = Control.MOUSE_FILTER_IGNORE if disable else Control.MOUSE_FILTER_PASS
 			# さらに子供がいるなら再帰的に処理
 			_set_disabled_recursive(child, disable)
+
+
+func _on_back_delete_pressed() -> void:
+	animation_player.play("delete_check_off")
+	await animation_player.animation_finished
+	$Panel/delete_chek.visible = false
+	_set_disabled_recursive(self,false)
+
+
+func _on_clear_on_pressed() -> void:
+	$Panel/delete_chek.visible = true
+	animation_player.play("delete_check_on")
+	_set_disabled_recursive(self,true)
+	_set_disabled_recursive($Panel/delete_chek,false)
+
+
+func _on_name_filter_text_changed(new_text: String) -> void:
+	Settings.name_filter = new_text

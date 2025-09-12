@@ -42,8 +42,8 @@ func _ready():
 	$WorldEnvironment.environment.fog_density = (0.5 if Settings.dark_mode else 0.1)
 # 左上基準にしたいので、半分分だけマイナス方向にずらす
 	floor.position = Vector3(w/2, -h/2, d/2)
-	grid1 = generate_maze()
-	var grid2 = generate_maze()
+	grid1 = generate_maze_no()
+	var grid2 = generate_maze_no()
 	combined_grid = combine_grids(grid1, grid2)
 	if Settings.trap_installation:
 		place_traps(trap_count)
@@ -134,6 +134,36 @@ func dig(grid: Array, x: int, y: int):
 				grid[y + int(dir.y)][x + int(dir.x)] = 0
 				grid[ny][nx] = 0
 				dig(grid, nx, ny)
+# === 迷路生成（非再帰） ===
+func generate_maze_no() -> Array:
+	var maze = []
+	for x in range(SIZE):
+		maze.append([])
+		for y in range(SIZE):
+			maze[x].append(1) # 壁で初期化
+
+	var stack = [Vector2i(1,1)]
+	maze[1][1] = 0
+	var directions = [Vector2i(2,0), Vector2i(-2,0), Vector2i(0,2), Vector2i(0,-2)]
+
+	while stack.size() > 0:
+		var current = stack[-1]
+		var neighbors = []
+		for dir in directions:
+			var nx = current.x + dir.x
+			var ny = current.y + dir.y
+			if nx > 0 and ny > 0 and nx < SIZE-1 and ny < SIZE-1:
+				if maze[nx][ny] == 1:
+					neighbors.append(Vector2i(nx, ny))
+		if neighbors.size() > 0:
+			var next = neighbors[randi() % neighbors.size()]
+			maze[(current.x + next.x) / 2][(current.y + next.y) / 2] = 0
+			maze[next.x][next.y] = 0
+			stack.append(next)
+		else:
+			stack.pop_back()
+
+	return maze
 
 
 # 2つの迷路を合成
