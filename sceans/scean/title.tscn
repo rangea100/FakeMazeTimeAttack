@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rbwa4lkpmwc5"]
+[gd_scene load_steps=20 format=3 uid="uid://rbwa4lkpmwc5"]
 
 [ext_resource type="Theme" uid="uid://cv50vybyyb5tv" path="res://assets/ui_tema/ui_thema.tres" id="1_bu1pm"]
 [ext_resource type="Script" uid="uid://bmwqjkhxg77us" path="res://sceans/gdscript/title.gd" id="1_qy0sv"]
@@ -119,6 +119,91 @@ _data = {
 &"ui_on": SubResource("Animation_n6vug")
 }
 
+[sub_resource type="Animation" id="Animation_rxqeb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("title_button/RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("title_button/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6iro1"]
+resource_name = "title_on"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title_button:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1.07177, 1, 0.594604),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("title_button/RichTextLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("title_button/VBoxContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ln283"]
+_data = {
+&"RESET": SubResource("Animation_rxqeb"),
+&"title_on": SubResource("Animation_6iro1")
+}
+
 [node name="title" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -160,6 +245,7 @@ offset_right = 367.0
 offset_bottom = 239.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(360, 244)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="title_button"]
 layout_mode = 1
@@ -171,12 +257,16 @@ anchor_bottom = 0.5
 offset_left = -426.0
 offset_top = -184.0
 offset_right = 408.0
-offset_bottom = -106.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 64
+theme_override_colors/default_color = Color(0.27451, 0.694118, 0.882353, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[shake rate=20 level=20]3D迷路(仮)"
+text = "[wave]フェイク・メイズ
+タイムアタック!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -497,6 +587,11 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "ランキング"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ln283")
+}
 
 [connection signal="pressed" from="title_button/VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="title_button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]

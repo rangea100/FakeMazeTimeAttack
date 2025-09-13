@@ -28,6 +28,8 @@ func _process(delta: float) -> void:
 			get_tree().paused = false
 			hide()
 			AudioManager.play_SE("res://assets/sound/off.mp3")
+			Settings.apply_preset_safe(Settings.preset)
+			SignalManager.on_game_restart.emit()
 
 
 func _on_button_pressed() -> void:
@@ -36,6 +38,8 @@ func _on_button_pressed() -> void:
 	get_tree().paused = false
 	hide()
 	AudioManager.play_SE("res://assets/sound/off.mp3")
+	Settings.apply_preset_safe(Settings.preset)
+	SignalManager.on_game_restart.emit()
 
 
 func _on_button_2_pressed() -> void:

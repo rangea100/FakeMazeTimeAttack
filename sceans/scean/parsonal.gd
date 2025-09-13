@@ -6,6 +6,7 @@ extends Panel
 @onready var regulation: Label = $regulation
 var pending_data = null
 var item:Array
+var player_name_text:String
 func _ready():
 	# _ready になるまで set_data が呼ばれた場合の待機処理
 	if pending_data:
@@ -13,13 +14,14 @@ func _ready():
 		pending_data = null
 func set_data(rank: int, name: String, timer: String, items: Array) -> void:
 	item = items
+	player_name_text = name
 	if is_inside_tree():  # 既に _ready が呼ばれていれば即適用
 		_apply_data({"rank": rank, "name": name, "timer": timer, "items": items})
 	else:
 		# _ready 前なら保存しておく
 		pending_data = {"rank": rank, "name": name, "timer": timer, "items": items}
 func _process(delta: float) -> void:
-	visible = check_item(item)
+	visible = check_item(item) and is_name_filtered(player_name_text)
 func _apply_data(data: Dictionary) -> void:
 	rank_label.text = str(data["rank"]) + ":"
 	player_name.text = data["name"]
@@ -43,3 +45,9 @@ func check_item(item: Array) -> bool:
 		if not item[i] and not cond_false:
 			return false
 	return true
+
+func is_name_filtered(name: String) -> bool:
+	var filter = Settings.name_filter.to_lower()
+	if filter == "":
+		return true  # フィルターが空なら全て表示
+	return name.to_lower().find(filter) != -1

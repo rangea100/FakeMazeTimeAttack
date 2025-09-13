@@ -4,7 +4,7 @@ extends Panel
 @onready var resolutioncontrol: OptionButton = $"TabContainer/画面/resolutioncontrol"
 @onready var map_controal: CheckButton = $"TabContainer/ゲーム/mapControal"
 @onready var sensitivity: HSlider = $TabContainer/ゲーム/sensitivity
-
+@onready var graphics_preset: OptionButton = $TabContainer/画面/GraphicsPreset
 var ui_on:bool=  false
 signal option_offed
 func _ready() -> void:
@@ -14,6 +14,7 @@ func _ready() -> void:
 	sensitivity.value = Settings.sensitivity
 	$"TabContainer/開発者特権/developerMode".button_pressed = Settings.develoer_mode
 	$TabContainer.set_tab_hidden(3,true)
+	graphics_preset.selected = Settings.graphics
 	ui_on = true
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("commemd") or Settings.develoer_mode:
@@ -81,3 +82,16 @@ func _on_developer_mode_toggled(toggled_on: bool) -> void:
 	Settings.develoer_mode = toggled_on
 	if ui_on:
 		AudioManager.play_SE("res://assets/sound/select.mp3")
+
+
+
+func _on_graphics_preset_item_selected(index: int) -> void:
+	Settings.graphics = index
+	AudioManager.play_SE("res://assets/sound/select.mp3")
+	match index:
+		0:
+			Settings.set_preset("res://sceans/resource/performance_preset.tres")
+		1:
+			Settings.set_preset("res://sceans/resource/balanced_preset.tres")
+		2:
+			Settings.set_preset("res://sceans/resource/quality_preset.tres")

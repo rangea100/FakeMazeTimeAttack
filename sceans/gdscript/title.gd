@@ -4,9 +4,12 @@ extends Control
 @onready var options: Panel = $options
 @onready var start_option: Panel = $start_option
 @onready var ranking_button: Button = $ranking_button
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	SceneManager.fade_in()
 	AudioManager.bgm_fade_out(1.0)
+	animation_player.play("title_on")
 
 func _on_start_pressed() -> void:
 	start_option.visible = true

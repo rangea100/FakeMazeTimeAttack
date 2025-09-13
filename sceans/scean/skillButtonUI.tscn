@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdcqudney878t" path="res://assets/LSS_sytem_itemui.png" id="1_u3km6"]
 [ext_resource type="Script" uid="uid://s3tlubvgdvpd" path="res://sceans/gdscript/skill_button_ui.gd" id="2_5cgaa"]
-[ext_resource type="Resource" uid="uid://dg37vminxnt34" path="res://sceans/skill1.tres" id="3_34ljj"]
+[ext_resource type="Resource" uid="uid://dg37vminxnt34" path="res://sceans/resource/skill1.tres" id="3_34ljj"]
 [ext_resource type="Texture2D" uid="uid://f3w0bwopwww" path="res://assets/item_signallost.png" id="3_gq5wh"]
 
 [sub_resource type="Animation" id="Animation_5cgaa"]

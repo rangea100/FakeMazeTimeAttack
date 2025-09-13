@@ -36,6 +36,7 @@ func _ready() -> void:
 	$background2.visible = false
 	$view_but_meter.visible = false
 	$PlayerLabel.text = Settings.player_name
+	$mapsizeLabel.text = str(Settings.map_size) + "x" + str(Settings.map_size)
 	background.value = 0
 	true_view.scale = Vector2(0.01,0.01)
 	view_but_bar.value = 100
@@ -95,7 +96,13 @@ func _process(delta: float) -> void:
 				using_item=false
 	if Input.is_action_just_pressed("y")and use_ui:
 		if Settings.develoer_mode:
+			Settings.player_name = ""
+			$PlayerLabel.visible = false
 			SignalManager.on_game_compleat.emit()
+		var env = $"../../WorldEnvironment".environment
+		print(env.ssao_enabled)
+		print(Settings.preset)
+		print(Settings.graphics)
 func _update_size() -> void:
 	true_view.pivot_offset = size/2
 	viewmap.pivot_offset = map.size/2
