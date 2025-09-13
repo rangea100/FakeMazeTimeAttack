@@ -175,7 +175,7 @@ func fade_in(setted_options: Dictionary = {}) -> void:
 	is_transitioning = false
 	transition_finished.emit()
 	options["on_fade_in"].call()
-func change_scene_loading(path: String, setted_options_in: Dictionary = {},setted_options_out: Dictionary = {}):
+func change_scene_loading(path: Variant, setted_options_in: Dictionary = {},setted_options_out: Dictionary = {}):
 	# setted_options をコピー
 	var option_out:Dictionary
 	if setted_options_out == {}:

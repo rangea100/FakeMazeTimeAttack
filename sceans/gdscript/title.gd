@@ -10,6 +10,8 @@ func _ready() -> void:
 	SceneManager.fade_in()
 	AudioManager.bgm_fade_out(1.0)
 	animation_player.play("title_on")
+	await  animation_player.animation_finished
+	animation_player.play("title")
 
 func _on_start_pressed() -> void:
 	start_option.visible = true

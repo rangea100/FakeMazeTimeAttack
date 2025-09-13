@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://rbwa4lkpmwc5"]
+[gd_scene load_steps=22 format=3 uid="uid://rbwa4lkpmwc5"]
 
 [ext_resource type="Theme" uid="uid://cv50vybyyb5tv" path="res://assets/ui_tema/ui_thema.tres" id="1_bu1pm"]
 [ext_resource type="Script" uid="uid://bmwqjkhxg77us" path="res://sceans/gdscript/title.gd" id="1_qy0sv"]
 [ext_resource type="PackedScene" uid="uid://ci5sk515mtrsf" path="res://sceans/scean/options.tscn" id="2_7u8id"]
 [ext_resource type="Script" uid="uid://b8u5m111wgknx" path="res://sceans/scean/strat_option.gd" id="3_7u8id"]
 [ext_resource type="Texture2D" uid="uid://b72xm8s042p66" path="res://assets/background_game.png" id="3_iixuf"]
+[ext_resource type="Texture2D" uid="uid://cghwm312mk0em" path="res://assets/title.png" id="4_6iro1"]
 [ext_resource type="Texture2D" uid="uid://dupaq5pnhqwko" path="res://assets/ui_tema/pannel/pannel3.png" id="4_dp07s"]
 [ext_resource type="PackedScene" uid="uid://c74q4gpxfvsd8" path="res://sceans/scean/ranking.tscn" id="4_rbnig"]
 [ext_resource type="Texture2D" uid="uid://cvd3k6rjyyw35" path="res://assets/ui_tema/pannel/pannel2.png" id="14_ed4po"]
@@ -157,9 +158,34 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("title_button/title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("title_button/title:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(104, 48)]
+}
 
 [sub_resource type="Animation" id="Animation_6iro1"]
 resource_name = "title_on"
+length = 2.0
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -168,7 +194,7 @@ tracks/0/path = NodePath("title_button:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
+"times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1.07177, 1, 0.594604),
 "update": 0,
 "values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
@@ -180,7 +206,7 @@ tracks/1/path = NodePath("title_button/RichTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.75),
+"times": PackedFloat32Array(0, 1, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -192,15 +218,46 @@ tracks/2/path = NodePath("title_button/VBoxContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.75, 1),
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("title_button/title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ln283"]
+resource_name = "title"
+length = 3.0
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title_button/title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, -1.8025, 1),
+"update": 0,
+"values": [Vector2(104, 48), Vector2(104, 35), Vector2(104, 48)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ln283"]
 _data = {
 &"RESET": SubResource("Animation_rxqeb"),
+&"title": SubResource("Animation_ln283"),
 &"title_on": SubResource("Animation_6iro1")
 }
 
@@ -247,7 +304,18 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(360, 244)
 
+[node name="title" type="TextureRect" parent="title_button"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 48.0
+offset_right = 606.0
+offset_bottom = 194.0
+texture = ExtResource("4_6iro1")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="RichTextLabel" type="RichTextLabel" parent="title_button"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
