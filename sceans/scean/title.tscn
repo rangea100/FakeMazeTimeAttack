@@ -257,12 +257,16 @@ anchor_bottom = 0.5
 offset_left = -426.0
 offset_top = -184.0
 offset_right = 408.0
-offset_bottom = -106.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 64
+theme_override_colors/default_color = Color(0.27451, 0.694118, 0.882353, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[shake rate=20 level=20]3D迷路(仮)"
+text = "[wave]フェイク・メイズ
+タイムアタック!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -126,6 +126,30 @@ popup/item_0/id = 0
 popup/item_1/text = "1920×1080"
 popup/item_1/id = 1
 
+[node name="Label" type="Label" parent="TabContainer/画面"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 118.5
+offset_right = 156.0
+offset_bottom = 135.5
+text = "描画モード"
+
+[node name="GraphicsPreset" type="OptionButton" parent="TabContainer/画面"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 141.0
+offset_right = 229.0
+offset_bottom = 166.0
+alignment = 1
+selected = 1
+item_count = 3
+popup/item_0/text = "処理優先"
+popup/item_0/id = 0
+popup/item_1/text = "バランス"
+popup/item_1/id = 1
+popup/item_2/text = "⚠️描画優先⚠️"
+popup/item_2/id = 2
+
 [node name="ゲーム" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -156,6 +180,7 @@ offset_left = 49.0
 offset_top = 122.5
 offset_right = 500.0
 offset_bottom = 140.5
+theme_override_constants/center_grabber = 15
 theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
@@ -163,6 +188,7 @@ min_value = 0.3
 max_value = 0.9
 step = 0.1
 value = 0.5
+tick_count = 7
 
 [node name="サウンド" type="Control" parent="TabContainer"]
 visible = false
@@ -247,6 +273,33 @@ script = ExtResource("2_0spym")
 audio_bus_name = "BGM"
 audio_id = 2
 
+[node name="EnvironmentLabel" type="Label" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 154.5
+offset_right = 239.0
+offset_bottom = 174.5
+theme_override_font_sizes/font_size = 20
+text = "環境音"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Environment" type="HSlider" parent="TabContainer/サウンド"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 174.5
+offset_right = 259.0
+offset_bottom = 190.5
+theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("2_0spym")
+audio_bus_name = "Environment"
+audio_id = 3
+
 [node name="開発者特権" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -299,10 +352,12 @@ libraries = {
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="toggled" from="TabContainer/画面/FullscreenControl" to="." method="_on_fullscreen_control_toggled"]
 [connection signal="item_selected" from="TabContainer/画面/resolutioncontrol" to="." method="_on_resolutioncontrol_item_selected"]
+[connection signal="item_selected" from="TabContainer/画面/GraphicsPreset" to="." method="_on_graphics_preset_item_selected"]
 [connection signal="toggled" from="TabContainer/ゲーム/mapControal" to="." method="_on_map_controal_toggled"]
 [connection signal="value_changed" from="TabContainer/ゲーム/sensitivity" to="." method="_on_sensitivity_value_changed"]
 [connection signal="value_changed" from="TabContainer/サウンド/master" to="TabContainer/サウンド/master" method="_on_value_changed"]
 [connection signal="value_changed" from="TabContainer/サウンド/se" to="TabContainer/サウンド/se" method="_on_value_changed"]
 [connection signal="value_changed" from="TabContainer/サウンド/BGM" to="TabContainer/サウンド/BGM" method="_on_value_changed"]
+[connection signal="value_changed" from="TabContainer/サウンド/Environment" to="TabContainer/サウンド/Environment" method="_on_value_changed"]
 [connection signal="toggled" from="TabContainer/開発者特権/developerMode" to="." method="_on_developer_mode_toggled"]
 [connection signal="pressed" from="back" to="." method="_on_back_option_pressed"]

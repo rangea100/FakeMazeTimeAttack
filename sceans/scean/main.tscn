@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bey2wmtbl7nki" path="res://sceans/scean/pause_menue.tscn" id="20_8tusk"]
 [ext_resource type="PackedScene" uid="uid://gsdanpfko4y5" path="res://sceans/scean/skillButtonUI.tscn" id="20_mafpa"]
 [ext_resource type="MeshLibrary" uid="uid://bp5thngjj3clb" path="res://assets/mesh_liblary/labyrinth_tiles.tres" id="21_7lvgr"]
-[ext_resource type="Resource" uid="uid://bw7x3v6ouy5ky" path="res://sceans/skill2.tres" id="21_lkgi4"]
+[ext_resource type="Resource" uid="uid://bw7x3v6ouy5ky" path="res://sceans/resource/skill2.tres" id="21_lkgi4"]
 [ext_resource type="Script" uid="uid://ci5scyli2xnn5" path="res://sceans/gdscript/skill_resoace.gd" id="22_pt6q5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0o0wm"]
@@ -45,7 +45,6 @@ sky_material = SubResource("ProceduralSkyMaterial_kqn4m")
 background_mode = 2
 sky = SubResource("Sky_if5bh")
 tonemap_mode = 2
-glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.24, 0, 0.172, 1)
 fog_light_energy = 0.38

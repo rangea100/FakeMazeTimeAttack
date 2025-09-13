@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="GraphicsPreset" load_steps=2 format=3 uid="uid://mgr11tk3ioo2"]
+
+[ext_resource type="Script" uid="uid://dw3tldeuuiens" path="res://sceans/gdscript/GraphicsPreset.gd" id="1_hkukc"]
+
+[resource]
+script = ExtResource("1_hkukc")
+name = "Default"
+ssao_enabled = true
+ssr_enabled = false
+glow_enabled = true
+volumetric_fog_enabled = false
+sdfgi_enabled = false
+msaa = 1
+fxaa = true
+taa = false
+metadata/_custom_type_script = "uid://dw3tldeuuiens"

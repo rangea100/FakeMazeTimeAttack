@@ -99,6 +99,10 @@ func _process(delta: float) -> void:
 			Settings.player_name = ""
 			$PlayerLabel.visible = false
 			SignalManager.on_game_compleat.emit()
+		var env = $"../../WorldEnvironment".environment
+		print(env.ssao_enabled)
+		print(Settings.preset)
+		print(Settings.graphics)
 func _update_size() -> void:
 	true_view.pivot_offset = size/2
 	viewmap.pivot_offset = map.size/2

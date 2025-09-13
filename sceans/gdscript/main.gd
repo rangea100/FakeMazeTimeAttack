@@ -16,6 +16,11 @@ var path
 var wait
 func _ready():
 	print("ready!")
+	if $WorldEnvironment.environment == null:
+		push_error("WorldEnvironment に Environment が割り当てられていません")
+		return
+	Settings.register_env($WorldEnvironment.environment)
+	SignalManager.on_game_restart.emit()
 	# 好きなサイズを設定
 	SIZE = Settings.map_size
 	match SIZE:
@@ -58,7 +63,7 @@ func _ready():
 	print("経路長:", path.size())
 	if path.size() == 0:
 		print("経路が見つかりませんでした")
-
+	Settings.apply_preset_safe(Settings.preset)
 func replace_grit() -> void:
 	for cell in gridmap.get_used_cells():
 		var item = gridmap.get_cell_item(cell)
