@@ -1,12 +1,12 @@
 extends Control
 
 @onready var progress_bar: ProgressBar = $ProgressBar
-var target_scene_path: String
+var target_scene_path: Variant
 var is_loading: bool = false
 var option: Dictionary
 func _ready() -> void:
 	$AnimationPlayer.play("now_loading")
-func start_loading(path: String,setted_options: Dictionary = {}) -> void:
+func start_loading(path: Variant,setted_options: Dictionary = {}) -> void:
 	target_scene_path = path
 	option = setted_options
 	var err = ResourceLoader.load_threaded_request(target_scene_path, "PackedScene")
