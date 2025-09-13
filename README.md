@@ -1,6 +1,6 @@
 # フェイク・メイズタイムアタック!!
 夏休み製作  
-もしかしたら高専生で出すかも　　
+もしかしたら高専祭で出すかも　　
 ## ダウンロード
 [ダウンロードはこちら](https://github.com/rangea100/3Dlabyrinse-by-Godot/releases/latest)
 ## FaMTA
