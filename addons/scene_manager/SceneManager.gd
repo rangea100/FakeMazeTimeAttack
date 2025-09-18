@@ -175,24 +175,19 @@ func fade_in(setted_options: Dictionary = {}) -> void:
 	is_transitioning = false
 	transition_finished.emit()
 	options["on_fade_in"].call()
-func change_scene_loading(path: Variant, setted_options_in: Dictionary = {},setted_options_out: Dictionary = {}):
-	# setted_options をコピー
-	var option_out:Dictionary
-	if setted_options_out == {}:
-		option_out = setted_options_in
-	else:
-		option_out = setted_options_out
-	var option = setted_options_in.duplicate()  # 安全にコピーする
+func change_scene_loading(path: Variant, setted_options_in: Dictionary = {}, setted_options_out: Dictionary = {}):
+	var option_out: Dictionary = setted_options_out if setted_options_out != {} else setted_options_in
+	var option = setted_options_in.duplicate()
+
 	var option_load = {
-		"on_tree_enter": func(loading_scene):
-			# LoadingScreen のスクリプトがアタッチされていることが前提
-			if loading_scene.has_method("start_loading"):
-				loading_scene.start_loading(path, option_out)
+		"on_fade_in": func():
+			# ロード画面のフェードインが完了したタイミングでロード開始
+			if _current_scene.has_method("start_loading"):
+				_current_scene.start_loading(path, option_out)
 			else:
 				push_error("LoadingScreen instance does not have start_loading()")
 	}
-	# merge は void なのでそのまま呼ぶ
 	option.merge(option_load)
 
-	# シーンを切り替え
+	# ロード画面に切り替え
 	SceneManager.change_scene("res://sceans/scean/load_scean.tscn", option)

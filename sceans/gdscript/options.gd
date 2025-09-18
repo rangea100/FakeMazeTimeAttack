@@ -35,8 +35,8 @@ func _on_resolutioncontrol_item_selected(index: int) -> void:
 	if ui_on:
 		AudioManager.play_SE("res://assets/sound/select.mp3")
 	Settings.resoltion_nomber = index
-	var viewport_wide = [1152,1920]
-	var viewport_high = [628,1080]
+	var viewport_wide = [1152,1280,1920]
+	var viewport_high = [628,720,1080]
 	var old_size = DisplayServer.window_get_size()
 	var old_pos = DisplayServer.window_get_position()
 	var new_size =	Vector2i(viewport_wide[index],viewport_high[index])

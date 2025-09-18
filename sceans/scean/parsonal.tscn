@@ -39,12 +39,23 @@ vertical_alignment = 1
 
 [node name="regulation" type="Label" parent="."]
 layout_mode = 0
-offset_left = 724.0
-offset_top = -4.0
-offset_right = 980.0
-offset_bottom = 77.0
+offset_left = 663.0
+offset_top = -6.0
+offset_right = 919.0
+offset_bottom = 75.0
 theme_override_font_sizes/font_size = 16
 text = "アイテム :on
 トラップ:off
 暗闇     :off"
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 811.0
+offset_top = 10.0
+offset_right = 915.0
+offset_bottom = 69.0
+text = "迷路あり
+セットを適応"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

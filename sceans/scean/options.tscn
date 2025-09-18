@@ -120,11 +120,13 @@ offset_top = 74.5
 offset_right = 505.0
 offset_bottom = 102.5
 selected = 0
-item_count = 2
+item_count = 3
 popup/item_0/text = "1152×648"
 popup/item_0/id = 0
-popup/item_1/text = "1920×1080"
+popup/item_1/text = "1280x720"
 popup/item_1/id = 1
+popup/item_2/text = "1920×1080"
+popup/item_2/id = 2
 
 [node name="Label" type="Label" parent="TabContainer/画面"]
 layout_mode = 0

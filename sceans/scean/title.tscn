@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rbwa4lkpmwc5"]
+[gd_scene load_steps=24 format=3 uid="uid://rbwa4lkpmwc5"]
 
 [ext_resource type="Theme" uid="uid://cv50vybyyb5tv" path="res://assets/ui_tema/ui_thema.tres" id="1_bu1pm"]
 [ext_resource type="Script" uid="uid://bmwqjkhxg77us" path="res://sceans/gdscript/title.gd" id="1_qy0sv"]
@@ -182,6 +182,68 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(104, 48)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("load_chek:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_026e8"]
+resource_name = "load_check_off"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("load_chek:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1.86607),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d617v"]
+resource_name = "load_check_on"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("load_chek:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1.86607),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ln283"]
+resource_name = "title"
+length = 3.0
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title_button/title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(104, 48), Vector2(104, 40), Vector2(104, 48)]
+}
 
 [sub_resource type="Animation" id="Animation_6iro1"]
 resource_name = "title_on"
@@ -194,7 +256,7 @@ tracks/0/path = NodePath("title_button:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(1.07177, 1, 0.594604),
 "update": 0,
 "values": [Vector2(0.01, 0.01), Vector2(1, 0.01), Vector2(1, 1)]
@@ -206,7 +268,7 @@ tracks/1/path = NodePath("title_button/RichTextLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
+"times": PackedFloat32Array(0, 0.75, 1.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -236,27 +298,11 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_ln283"]
-resource_name = "title"
-length = 3.0
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("title_button/title:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, -1.8025, 1),
-"update": 0,
-"values": [Vector2(104, 48), Vector2(104, 35), Vector2(104, 48)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ln283"]
 _data = {
 &"RESET": SubResource("Animation_rxqeb"),
+&"load_check_off": SubResource("Animation_026e8"),
+&"load_check_on": SubResource("Animation_d617v"),
 &"title": SubResource("Animation_ln283"),
 &"title_on": SubResource("Animation_6iro1")
 }
@@ -390,14 +436,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.5
-offset_top = -217.0
-offset_right = 136.5
-offset_bottom = -165.0
+offset_left = -318.5
+offset_top = -216.0
+offset_right = 345.5
+offset_bottom = -161.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "難易度設定"
+horizontal_alignment = 1
 
 [node name="difficulty" type="HBoxContainer" parent="start_option"]
 layout_mode = 0
@@ -431,7 +478,7 @@ text = "エクストラ"
 layout_mode = 0
 offset_left = 295.0
 offset_top = 151.0
-offset_right = 471.0
+offset_right = 472.0
 offset_bottom = 192.0
 theme_override_font_sizes/font_size = 32
 text = "詳細設定"
@@ -509,22 +556,41 @@ offset_right = 173.0
 offset_bottom = 10.0
 text = "マップサイズ"
 
-[node name="Label" type="Label" parent="start_option"]
+[node name="name_label" type="Label" parent="start_option"]
 layout_mode = 0
 offset_left = 263.0
 offset_top = 339.0
-offset_right = 375.0
+offset_right = 519.0
 offset_bottom = 356.0
 text = "プレイヤー名"
 
-[node name="player_name" type="LineEdit" parent="start_option"]
-layout_mode = 0
-offset_left = 261.0
-offset_top = 359.0
-offset_right = 522.0
-offset_bottom = 394.0
+[node name="Ranking_save" type="HBoxContainer" parent="start_option"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = 103.0
+offset_right = 124.5
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="player_name" type="LineEdit" parent="start_option/Ranking_save"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
 placeholder_text = "プレイヤー名(10文字以内)"
 max_length = 10
+
+[node name="MapSave" type="CheckButton" parent="start_option/Ranking_save"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "マップの保存"
 
 [node name="back" type="Button" parent="start_option"]
 layout_mode = 1
@@ -661,19 +727,97 @@ libraries = {
 &"": SubResource("AnimationLibrary_ln283")
 }
 
+[node name="load_chek" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = -83.5
+offset_right = 217.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(217.5, 87.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_48ybr")
+
+[node name="Label" type="Label" parent="load_chek"]
+layout_mode = 0
+offset_left = 77.5
+offset_top = 13.5
+offset_right = 349.5
+offset_bottom = 82.5
+theme_override_font_sizes/font_size = 32
+text = "この設定を
+適応しますか?"
+horizontal_alignment = 1
+
+[node name="With_map" type="Label" parent="load_chek"]
+visible = false
+layout_mode = 0
+offset_left = 54.0
+offset_top = 30.0
+offset_right = 392.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 25
+text = "この設定とマップ情報を
+適応しますか?"
+horizontal_alignment = 1
+
+[node name="load" type="Button" parent="load_chek"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.5
+offset_top = 17.0
+offset_right = 164.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "適用する"
+
+[node name="back" type="Button" parent="load_chek"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.5
+offset_top = 17.0
+offset_right = -14.5
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "もどる"
+
+[connection signal="load_aset_on" from="." to="start_option" method="_on_title_load_aset_on"]
 [connection signal="pressed" from="title_button/VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="title_button/VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="title_button/VBoxContainer/Button2" to="." method="_on_end_pressed"]
 [connection signal="option_offed" from="options" to="." method="_on_options_option_offed"]
+[connection signal="load_back" from="start_option" to="." method="_on_start_option_load_back"]
 [connection signal="start_option_offed" from="start_option" to="." method="_on_start_option_offed"]
 [connection signal="toggled" from="start_option/AdvancedSettingButton" to="start_option" method="_on_advanced_setting_button_toggled"]
 [connection signal="item_selected" from="start_option/AdvancedSetting/GridContainer/MapSize" to="start_option" method="_on_map_size_item_selected"]
 [connection signal="toggled" from="start_option/AdvancedSetting/GridContainer/UsingItem" to="start_option" method="_on_using_item_toggled"]
 [connection signal="toggled" from="start_option/AdvancedSetting/GridContainer/TrapInstallation" to="start_option" method="_on_trap_installation_toggled"]
 [connection signal="toggled" from="start_option/AdvancedSetting/GridContainer/DarkMode" to="start_option" method="_on_dark_mode_toggled"]
+[connection signal="text_changed" from="start_option/Ranking_save/player_name" to="start_option" method="_on_player_name_text_changed"]
+[connection signal="toggled" from="start_option/Ranking_save/MapSave" to="start_option" method="_on_map_save_toggled"]
 [connection signal="pressed" from="start_option/back" to="start_option" method="_on_back_pressed"]
 [connection signal="pressed" from="start_option/start" to="start_option" method="_on_start_pressed"]
 [connection signal="pressed" from="start_option/start_chek/start" to="start_option" method="_on_start_start_chek_pressed"]
 [connection signal="pressed" from="start_option/start_chek/back" to="start_option" method="_on_back_start_check_pressed"]
 [connection signal="ranking_off" from="Ranking" to="." method="_on_ranking_ranking_off"]
 [connection signal="pressed" from="ranking_button" to="." method="_on_ranking_button_pressed"]
+[connection signal="pressed" from="load_chek/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="load_chek/back" to="." method="_on_back_pressed"]

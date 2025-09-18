@@ -30,6 +30,7 @@ func _update_size():
 	sub_viewport.size = get_viewport().size
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_move:
+		print(-event.relative)
 		rotate_y(deg_to_rad(-event.relative.x*kando))
 		camera_3d.rotate_x(deg_to_rad(-event.relative.y*kando))
 		camera_3d.rotation_degrees.x = clamp(camera_3d.rotation_degrees.x,-90,90)
@@ -48,6 +49,10 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if can_move:
+		var camera_direction:Vector2 = Input.get_vector("VisiLeft","VisiRight","VisUp","VisiDown").normalized()
+		rotate_y(deg_to_rad(-camera_direction.x*kando*7))
+		camera_3d.rotate_x(deg_to_rad(-camera_direction.y*kando*7))
+		camera_3d.rotation_degrees.x = clamp(camera_3d.rotation_degrees.x,-90,90)
 		var input_dir := Input.get_vector("left", "right", "up", "down")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:
