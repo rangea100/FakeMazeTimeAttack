@@ -47,9 +47,15 @@ func _ready():
 	$WorldEnvironment.environment.fog_density = (0.5 if Settings.dark_mode else 0.1)
 # 左上基準にしたいので、半分分だけマイナス方向にずらす
 	floor.position = Vector3(w/2, -h/2, d/2)
-	grid1 = generate_maze_no()
+	for i in range(Settings.map.size()): # ← range() を使う！
+		for j in range(Settings.map[i].size()):
+			if typeof(Settings.map[i][j]) == TYPE_FLOAT:
+				Settings.map[i][j] = int(Settings.map[i][j])
+	grid1 = generate_maze_no()  if Settings.map == [] else convert_maze(Settings.map)
 	var grid2 = generate_maze_no()
-	combined_grid = combine_grids(grid1, grid2)
+	#print(grid1)
+	combined_grid = combine_grids(grid1, grid2) if Settings.map == [] else Settings.map
+	Settings.saved_map = combined_grid
 	if Settings.trap_installation:
 		place_traps(trap_count)
 	# スタート・ゴールを設置
@@ -126,7 +132,23 @@ func generate_maze() -> Array:
 	dig(grid, start_x, start_y)
 	return grid
 
-
+func convert_maze(maze:Array) -> Array:
+	var size_x = maze.size()
+	var size_y = maze[0].size()
+	var new_maze:Array = []
+	
+	for x in range(size_x):
+		new_maze.append([])
+		for y in range(size_y):
+			var val = maze[x][y]
+			match val:
+				2:
+					new_maze[x].append(0)  # 2 → 0
+				3:
+					new_maze[x].append(1)  # 3 → 1
+				_:
+					new_maze[x].append(val)  # それ以外はそのまま
+	return new_maze
 func dig(grid: Array, x: int, y: int):
 	var directions = [Vector2(0,-1), Vector2(0,1), Vector2(-1,0), Vector2(1,0)]
 	directions.shuffle()
@@ -273,9 +295,11 @@ func find_path(start:Vector2i, goal:Vector2i) -> Array:
 # === 経路を7で徐々に表示 ===
 func show_path(path:Array,wait:float) -> void:
 	for p in path:
-		var maze_x = int(p.x)
-		var maze_y = int(p.y)
-
+		var maze_x
+		var maze_y
+		maze_x = int(p.x)
+		maze_y = int(p.y)
+		
 		# GridMap は X,Z なので maze の行列に合わせて Z に maze_y を設定
 		gridmap.set_cell_item(Vector3i(maze_y, 0, maze_x), 7)
 		await get_tree().create_timer(wait).timeout

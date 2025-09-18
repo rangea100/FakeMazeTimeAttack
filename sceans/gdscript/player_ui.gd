@@ -46,6 +46,34 @@ func _ready() -> void:
 	#await wait_for_key("e")
 	await get_tree().create_timer(1.5).timeout
 	animation_player.play("ui_on")
+var last_input_method = "keyboard"  # "keyboard" または "controller"
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if last_input_method != "keyboard":
+			last_input_method = "keyboard"
+			_on_input_method_changed()
+	
+	elif event is InputEventJoypadButton and event.pressed:
+		if last_input_method != "controller":
+			last_input_method = "controller"
+			_on_input_method_changed()
+	
+	elif event is InputEventJoypadMotion and abs(event.axis_value) > 0.2:
+		if last_input_method != "controller":
+			last_input_method = "controller"
+			_on_input_method_changed()
+func _on_input_method_changed():
+	if last_input_method == "keyboard":
+		$key_display/Label.text = "1"
+		$key_display/Label2.text = "2"
+		$key_display/Label3.text = "3"
+		$key_display/Label4.text = "E"
+	elif last_input_method == "controller":
+		$key_display/Label.text = "L"
+		$key_display/Label2.text = "ZL"
+		$key_display/Label3.text = "R"
+		$key_display/Label4.text = "X"
 func wait_for_key(key: String) -> void:
 	while true:
 		var ev: InputEvent = await get_tree().create_timer(0.01).timeout
@@ -159,8 +187,12 @@ func _on_game_complete() -> void:
 	if Settings.player_name== "":
 		pass
 	else:
-		RankingSave.add_record(Settings.player_name,stopwatch.elapsed_time,stopwatch.format_time(stopwatch.elapsed_time),Settings.regulation,Settings.map_size)
-		RankingSave.save_ranking()
+		if Settings.map_save:
+			RankingSave.add_record(Settings.player_name,stopwatch.elapsed_time,stopwatch.format_time(stopwatch.elapsed_time),Settings.regulation,Settings.map_size,Settings.saved_map)
+			RankingSave.save_ranking()
+		else:
+			RankingSave.add_record(Settings.player_name,stopwatch.elapsed_time,stopwatch.format_time(stopwatch.elapsed_time),Settings.regulation,Settings.map_size)
+			RankingSave.save_ranking()
 		
 	game_clear.visible = true
 	game_clear.modulate.a = 0

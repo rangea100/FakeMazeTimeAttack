@@ -8,7 +8,7 @@ func _ready() -> void:
 	load_ranking()
 
 # 記録を追加
-func add_record(player_name: String, time: float,timer:String, items: Array,size: int) -> void:
+func add_record(player_name: String, time: float,timer:String, items: Array,size: int, map:Array =[]) -> void:
 	var record = {
 		"name": player_name,
 		"time": time,
@@ -16,6 +16,8 @@ func add_record(player_name: String, time: float,timer:String, items: Array,size
 		"items": items,
 		"size":int(size)
 	}
+	if Settings.map_save:
+		record["map"] = map
 	ranking.append(record)
 	
 	# タイムでソート（昇順 = 早い方が上）

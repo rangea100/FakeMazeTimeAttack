@@ -85,38 +85,41 @@ func show_ranking():
 		print("そこになにもなかった")
 
 	for i in range(RankingSave.ranking.size()):
-		var r = RankingSave.ranking[i]
+		var r:Dictionary = RankingSave.ranking[i]
 		match r["size"]:
 			11,11.0:
 				_11 += 1
 				var row = preload("res://sceans/scean/parsonal.tscn").instantiate()
-				row.set_data(_11, r["name"], r["timer"], r["items"])
+				row.set_data(_11, r["name"], r["timer"], r["items"],0,r["map"] if r.has("map") else [])
 				_11x_11.add_child(row)
 			21,21.0:
 				_21 += 1
 				var row = preload("res://sceans/scean/parsonal.tscn").instantiate()
-				row.set_data(_21, r["name"], r["timer"], r["items"])
+				row.set_data(_21, r["name"], r["timer"], r["items"],1,r["map"] if r.has("map") else [])
 				_21x_21.add_child(row)
 			31,31.0:
 				_31 += 1
 				var row = preload("res://sceans/scean/parsonal.tscn").instantiate()
-				row.set_data(_31, r["name"], r["timer"], r["items"])
+				row.set_data(_31, r["name"], r["timer"], r["items"],2,r["map"] if r.has("map") else [])
 				_31x_31.add_child(row)
 			41,41.0:
 				_41 += 1
 				var row = preload("res://sceans/scean/parsonal.tscn").instantiate()
-				row.set_data(_41, r["name"], r["timer"], r["items"])
+				row.set_data(_41, r["name"], r["timer"], r["items"],3,r["map"] if r.has("map") else [])
 				_41x_41.add_child(row)
 			85,85.0:
 				_85 += 1
 				var row = preload("res://sceans/scean/parsonal.tscn").instantiate()
-				row.set_data(_85, r["name"], r["timer"], r["items"])
+				row.set_data(_85, r["name"], r["timer"], r["items"],4,r["map"] if r.has("map") else [])
 				_85x_85.add_child(row)
 
 func show_ranking_bord() -> void:
 	visible = true
 	animation_player.play("ranking_on")
-
+func hide_ranking_bord()-> void:
+	animation_player.play("ranking_off")
+	await animation_player.animation_finished
+	visible = false
 func hide_ranking() -> void:
 	AudioManager.play_SE("res://assets/sound/off.mp3")
 	animation_player.play("ranking_off")

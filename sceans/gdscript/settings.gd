@@ -11,11 +11,18 @@ var graphics:int = 1
 
 #難易度設定
 var map_size:int =21
-var  item_can_use:bool = true
+var item_can_use:bool = true
 var trap_installation:bool = true
 var dark_mode:bool = false
 var regulation:Array
-
+var map_save:bool = false
+#ロード
+var map:Array
+var saved_map:Array
+var load_map_size:int
+var load_item_can_use:bool = true
+var load_trap_installation:bool = true
+var load_dark_mode:bool = false
 #フィルター設定
 var filter_setting:Array = [[false,false],[false,false],[false,false]]
 var filter:bool = false
