@@ -37,6 +37,7 @@ func _input(event: InputEvent) -> void:
 func _process(delta):
 	scope.global_transform = $Camera3D.global_transform
 	kando = Settings.sensitivity
+	set_collision_mask_value(4,!Settings.collision_miss)
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -50,6 +51,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if can_move:
 		var camera_direction:Vector2 = Input.get_vector("VisiLeft","VisiRight","VisUp","VisiDown").normalized()
+		print(camera_direction)
 		rotate_y(deg_to_rad(-camera_direction.x*kando*7))
 		camera_3d.rotate_x(deg_to_rad(-camera_direction.y*kando*7))
 		camera_3d.rotation_degrees.x = clamp(camera_3d.rotation_degrees.x,-90,90)

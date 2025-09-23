@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=49 format=3 uid="uid://cv50vybyyb5tv"]
+[gd_resource type="Theme" load_steps=54 format=3 uid="uid://cv50vybyyb5tv"]
 
 [ext_resource type="Texture2D" uid="uid://d2sbels811ly1" path="res://assets/ui_tema/button/button_disable.png" id="1_qlapk"]
 [ext_resource type="Texture2D" uid="uid://bpriqo1501jyi" path="res://assets/ui_tema/button/button_focus.png" id="2_n5rfe"]
@@ -45,7 +45,13 @@ texture = ExtResource("5_ox1y0")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ln283"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chttw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s6ru"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.307686, 0.945712, 0.378131, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d617v"]
 
@@ -63,6 +69,18 @@ texture = ExtResource("10_n5rfe")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_chttw"]
 texture = ExtResource("10_n5rfe")
 region_rect = Rect2(0, 0, 664, 664)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7s6ru"]
+color = Color(0, 0.133333, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ktsl7"]
+color = Color(0.301833, 1, 0.29, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_naoqu"]
+color = Color(1, 1, 1, 1)
+thickness = 6
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_33djv"]
 texture = ExtResource("11_7s6ru")
@@ -89,6 +107,17 @@ texture_margin_right = 212.668
 texture_margin_bottom = 83.7949
 region_rect = Rect2(0, 0, 440.3, 438)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chttw"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.35304, 0.948757, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07irb"]
+texture = ExtResource("10_n5rfe")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf8p8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlapk"]
@@ -108,9 +137,13 @@ texture = ExtResource("4_4os2e")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaakl"]
 texture = ExtResource("10_n5rfe")
-region_rect = Rect2(0, 0, 664, 664)
+region_rect = Rect2(4.03088, 0, 550.902, 556.005)
 
 [resource]
+Button/colors/font_focus_color = Color(1, 1, 0.27451, 1)
+Button/colors/font_hover_color = Color(1, 1, 0.27451, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 0, 1)
 Button/styles/disabled = SubResource("StyleBoxTexture_ln283")
 Button/styles/focus = SubResource("StyleBoxTexture_6iro1")
 Button/styles/hover = SubResource("StyleBoxTexture_iixuf")
@@ -122,12 +155,16 @@ CheckBox/styles/hover = SubResource("StyleBoxEmpty_bnnic")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_073mp")
 CheckBox/styles/normal = SubResource("StyleBoxEmpty_xcg4j")
 CheckBox/styles/pressed = SubResource("StyleBoxEmpty_fxl6c")
+CheckButton/colors/font_focus_color = Color(0.94902, 0.94902, 0.27451, 1)
+CheckButton/colors/font_hover_color = Color(1, 1, 0.27451, 1)
+CheckButton/colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+CheckButton/colors/font_pressed_color = Color(1, 1, 0, 1)
 CheckButton/icons/checked = ExtResource("6_7s6ru")
 CheckButton/icons/checked_disabled = ExtResource("7_chttw")
 CheckButton/icons/unchecked = ExtResource("8_xaakl")
 CheckButton/icons/unchecked_disabled = ExtResource("9_07irb")
 CheckButton/styles/disabled = SubResource("StyleBoxEmpty_ln283")
-CheckButton/styles/focus = SubResource("StyleBoxEmpty_chttw")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_7s6ru")
 CheckButton/styles/hover = SubResource("StyleBoxEmpty_d617v")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_026e8")
 CheckButton/styles/normal = SubResource("StyleBoxEmpty_rxqeb")
@@ -135,12 +172,18 @@ CheckButton/styles/pressed = SubResource("StyleBoxEmpty_h08id")
 FileDialog/styles/embedded_border = SubResource("StyleBoxTexture_7s6ru")
 FileDialog/styles/embedded_unfocused_border = SubResource("StyleBoxEmpty_n5rfe")
 FileDialog/styles/panel = SubResource("StyleBoxTexture_chttw")
+HSlider/styles/grabber_area = SubResource("StyleBoxLine_7s6ru")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
+HSlider/styles/slider = SubResource("StyleBoxLine_naoqu")
 OptionButton/styles/disabled = SubResource("StyleBoxTexture_33djv")
 OptionButton/styles/focus = SubResource("StyleBoxTexture_ghw76")
 OptionButton/styles/hover = SubResource("StyleBoxTexture_bk1hn")
 OptionButton/styles/normal = SubResource("StyleBoxTexture_ij80s")
 OptionButton/styles/pressed = SubResource("StyleBoxTexture_0agpo")
 Panel/styles/panel = SubResource("StyleBoxTexture_bu1pm")
+PopupMenu/colors/font_hover_color = Color(1, 1, 0.27451, 1)
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_chttw")
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_07irb")
 TabContainer/colors/font_selected_color = Color(0.94902, 0.94902, 0, 1)
 TabContainer/styles/panel = SubResource("StyleBoxEmpty_pf8p8")
 TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_qlapk")

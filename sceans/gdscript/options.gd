@@ -16,11 +16,17 @@ func _ready() -> void:
 	$TabContainer.set_tab_hidden(3,true)
 	graphics_preset.selected = Settings.graphics
 	ui_on = true
+	$"TabContainer/開発者特権/DevelopMenu/CollisionMiss".button_pressed = Settings.collision_miss
+	for child in $"TabContainer/開発者特権/DevelopMenu".get_children():
+		if child is CheckButton:
+			child.toggled.connect(_on_develop_toggled.bind(child))
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("commemd") or Settings.develoer_mode:
 		$TabContainer.set_tab_hidden(3,false)
 	else:
 		$TabContainer.set_tab_hidden(3,true)
+	for child in $"TabContainer/開発者特権/DevelopMenu".get_children():
+		child.disabled = !Settings.develoer_mode
 func _on_fullscreen_control_toggled(toggled_on: bool) -> void:
 	if ui_on:
 		AudioManager.play_SE("res://assets/sound/select.mp3")
@@ -95,3 +101,8 @@ func _on_graphics_preset_item_selected(index: int) -> void:
 			Settings.set_preset("res://sceans/resource/balanced_preset.tres")
 		2:
 			Settings.set_preset("res://sceans/resource/quality_preset.tres")
+func _on_develop_toggled(toggle:bool,check:CheckButton):
+	AudioManager.play_SE("res://assets/sound/select.mp3")
+	match check.name:
+		"CollisionMiss":
+			Settings.collision_miss = toggle

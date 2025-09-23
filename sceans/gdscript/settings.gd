@@ -4,10 +4,12 @@ var fullscreen_mode:bool = true
 var resoltion_nomber:int = 0
 var map_rotaition:bool = false
 var sensitivity:float = 0.5
+var audio:Array = [true,true,true,true]
 var volume:Array = [1.0,0.5,0.5,0.5]
 var player_name:String
 var develoer_mode:bool = false
 var graphics:int = 1
+var collision_miss = false
 
 #難易度設定
 var map_size:int =21

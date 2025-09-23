@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci5sk515mtrsf"]
+[gd_scene load_steps=14 format=3 uid="uid://ci5sk515mtrsf"]
 
-[ext_resource type="Script" uid="uid://dda0q18a6j1ei" path="res://sceans/gdscript/options.gd" id="1_yv1i3"]
-[ext_resource type="Script" uid="uid://jkdpy1uma31b" path="res://sceans/scean/h_slider.gd" id="2_0spym"]
+[ext_resource type="Script" uid="uid://rhcx1ksirnc1" path="res://sceans/gdscript/new_options.gd" id="1_sq23v"]
 [ext_resource type="AudioStream" uid="uid://bsy2ngtpqleys" path="res://assets/sound/off.mp3" id="3_7th76"]
 [ext_resource type="AudioStream" uid="uid://b7rbx40sehm4q" path="res://assets/sound/select.mp3" id="4_7th76"]
+[ext_resource type="Script" uid="uid://d4f3n3fnf1r8u" path="res://sceans/gdscript/menu_tab.gd" id="5_ktsl7"]
+[ext_resource type="Script" uid="uid://cu0n8s408kgqy" path="res://sceans/gdscript/menu.gd" id="6_sq23v"]
+[ext_resource type="Texture2D" uid="uid://dopb4l3lbq747" path="res://assets/system/cursor.png" id="7_sq23v"]
 
 [sub_resource type="Theme" id="Theme_bbsm1"]
 
@@ -12,7 +14,7 @@ color = Color(1, 1, 1, 1)
 thickness = 6
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ktsl7"]
-color = Color(0.29, 0.29, 1, 1)
+color = Color(0.301833, 1, 0.29, 1)
 thickness = 6
 
 [sub_resource type="Animation" id="Animation_bbsm1"]
@@ -84,9 +86,224 @@ offset_bottom = 223.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(289, 223.5)
-script = ExtResource("1_yv1i3")
+script = ExtResource("1_sq23v")
+
+[node name="TabMenu" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 48.0
+offset_right = 499.0
+offset_bottom = 329.0
+current_tab = 0
+script = ExtResource("5_ktsl7")
+
+[node name="画面" type="ScrollContainer" parent="TabMenu"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabMenu/画面"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 40
+
+[node name="Menu" type="VBoxContainer" parent="TabMenu/画面/MarginContainer" node_paths=PackedStringArray("pointer")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("6_sq23v")
+pointer = NodePath("../../../../Sprite2D")
+position_x = -20.0
+
+[node name="FullScrean" type="CheckButton" parent="TabMenu/画面/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "フルスクリーン"
+
+[node name="WindowSizeLabel" type="Label" parent="TabMenu/画面/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "ウィンドウサイズ"
+horizontal_alignment = 1
+
+[node name="WindowSize" type="OptionButton" parent="TabMenu/画面/MarginContainer/Menu"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "1152×648"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "1920×1080"
+popup/item_2/id = 2
+
+[node name="GraphicsPresetLabel" type="Label" parent="TabMenu/画面/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "描画モード"
+horizontal_alignment = 1
+
+[node name="GraphicsPreset" type="OptionButton" parent="TabMenu/画面/MarginContainer/Menu"]
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "処理優先"
+popup/item_0/id = 0
+popup/item_1/text = "バランス"
+popup/item_1/id = 1
+popup/item_2/text = "⚠️描画優先⚠️"
+popup/item_2/id = 2
+
+[node name="ゲーム" type="ScrollContainer" parent="TabMenu"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabMenu/ゲーム"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 40
+
+[node name="Menu" type="VBoxContainer" parent="TabMenu/ゲーム/MarginContainer" node_paths=PackedStringArray("pointer")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("6_sq23v")
+pointer = NodePath("../../../../Sprite2D")
+position_x = -20.0
+
+[node name="MapControal" type="CheckButton" parent="TabMenu/ゲーム/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "マップを回転"
+
+[node name="SensitivityLabel" type="Label" parent="TabMenu/ゲーム/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "感度"
+horizontal_alignment = 1
+
+[node name="Sensitivity" type="HSlider" parent="TabMenu/ゲーム/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_constants/center_grabber = 15
+min_value = 0.3
+max_value = 0.9
+step = 0.1
+value = 0.5
+tick_count = 7
+
+[node name="サウンド" type="ScrollContainer" parent="TabMenu"]
+visible = false
+layout_mode = 2
+follow_focus = true
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabMenu/サウンド"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 40
+
+[node name="Menu" type="VBoxContainer" parent="TabMenu/サウンド/MarginContainer" node_paths=PackedStringArray("pointer")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("6_sq23v")
+pointer = NodePath("../../../../Sprite2D")
+position_x = -20.0
+
+[node name="MasterLabel" type="CheckButton" parent="TabMenu/サウンド/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "マスター音量"
+
+[node name="Master" type="HSlider" parent="TabMenu/サウンド/MarginContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="SELabel" type="CheckButton" parent="TabMenu/サウンド/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SE"
+
+[node name="SE" type="HSlider" parent="TabMenu/サウンド/MarginContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="BGMLabel" type="CheckButton" parent="TabMenu/サウンド/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "BGM"
+
+[node name="BGM" type="HSlider" parent="TabMenu/サウンド/MarginContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="EnvironmentLabel" type="CheckButton" parent="TabMenu/サウンド/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "環境音"
+
+[node name="Environment" type="HSlider" parent="TabMenu/サウンド/MarginContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="開発者特権" type="ScrollContainer" parent="TabMenu"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabMenu/開発者特権"]
+layout_mode = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 40
+
+[node name="Menu" type="VBoxContainer" parent="TabMenu/開発者特権/MarginContainer" node_paths=PackedStringArray("pointer")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("6_sq23v")
+pointer = NodePath("../../../../Sprite2D")
+position_x = -20.0
+
+[node name="DeveloperMode" type="CheckButton" parent="TabMenu/開発者特権/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "開発者モード"
+
+[node name="DevelopTool" type="Label" parent="TabMenu/開発者特権/MarginContainer/Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "開発者ツール"
+horizontal_alignment = 1
+
+[node name="CollisionMiss" type="CheckButton" parent="TabMenu/開発者特権/MarginContainer/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "壁抜け"
 
 [node name="TabContainer" type="TabContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,120 +409,10 @@ step = 0.1
 value = 0.5
 tick_count = 7
 
-[node name="サウンド" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="masterLabel" type="Label" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 23.5
-offset_right = 328.0
-offset_bottom = 43.5
-theme_override_font_sizes/font_size = 20
-text = "マスター音量"
-
-[node name="master" type="HSlider" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 51.5
-offset_right = 490.0
-offset_bottom = 67.5
-theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
-max_value = 1.0
-step = 0.05
-value = 1.0
-script = ExtResource("2_0spym")
-audio_bus_name = "Master"
-
-[node name="seLabel" type="Label" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 98.5
-offset_right = 241.0
-offset_bottom = 118.5
-theme_override_font_sizes/font_size = 20
-text = "SE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="se" type="HSlider" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 120.0
-offset_right = 266.0
-offset_bottom = 136.0
-theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
-max_value = 1.0
-step = 0.05
-value = 1.0
-script = ExtResource("2_0spym")
-audio_bus_name = "SE"
-audio_id = 1
-
-[node name="BGMLabel" type="Label" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 331.0
-offset_top = 97.5
-offset_right = 451.0
-offset_bottom = 117.5
-theme_override_font_sizes/font_size = 20
-text = "BGM"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BGM" type="HSlider" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 304.0
-offset_top = 119.5
-offset_right = 484.0
-offset_bottom = 135.5
-theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
-max_value = 1.0
-step = 0.05
-value = 1.0
-script = ExtResource("2_0spym")
-audio_bus_name = "BGM"
-audio_id = 2
-
-[node name="EnvironmentLabel" type="Label" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 119.0
-offset_top = 154.5
-offset_right = 239.0
-offset_bottom = 174.5
-theme_override_font_sizes/font_size = 20
-text = "環境音"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Environment" type="HSlider" parent="TabContainer/サウンド"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 174.5
-offset_right = 259.0
-offset_bottom = 190.5
-theme_override_styles/slider = SubResource("StyleBoxLine_naoqu")
-theme_override_styles/grabber_area = SubResource("StyleBoxLine_ktsl7")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_ktsl7")
-max_value = 1.0
-step = 0.05
-value = 1.0
-script = ExtResource("2_0spym")
-audio_bus_name = "Environment"
-audio_id = 3
-
 [node name="開発者特権" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 2
 
 [node name="developerMode" type="CheckButton" parent="TabContainer/開発者特権"]
 layout_mode = 0
@@ -315,6 +422,18 @@ offset_right = 257.0
 offset_bottom = 99.5
 theme_override_font_sizes/font_size = 20
 text = "開発者モード"
+
+[node name="DevelopMenu" type="GridContainer" parent="TabContainer/開発者特権"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 105.5
+offset_right = 167.0
+offset_bottom = 145.5
+
+[node name="CollisionMiss" type="CheckButton" parent="TabContainer/開発者特権/DevelopMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "壁抜け"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -331,10 +450,10 @@ vertical_alignment = 1
 
 [node name="back" type="Button" parent="."]
 layout_mode = 1
-offset_left = 232.0
-offset_top = 302.5
-offset_right = 341.0
-offset_bottom = 366.5
+offset_left = 228.0
+offset_top = 358.5
+offset_right = 337.0
+offset_bottom = 422.5
 theme_override_font_sizes/font_size = 32
 text = "戻る"
 
@@ -351,15 +470,28 @@ libraries = {
 &"": SubResource("AnimationLibrary_xhjqt")
 }
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(86, 51.25)
+scale = Vector2(0.156863, 0.159836)
+texture = ExtResource("7_sq23v")
+
+[connection signal="actioned" from="TabMenu/画面/MarginContainer/Menu" to="." method="_on_menu_actioned"]
+[connection signal="reqest_visible" from="TabMenu/画面/MarginContainer/Menu" to="." method="_on_menu_reqest_visible"]
+[connection signal="request_init" from="TabMenu/画面/MarginContainer/Menu" to="." method="_on_menu_request_init"]
+[connection signal="actioned" from="TabMenu/ゲーム/MarginContainer/Menu" to="." method="_on_menu_actioned"]
+[connection signal="reqest_visible" from="TabMenu/ゲーム/MarginContainer/Menu" to="." method="_on_menu_reqest_visible"]
+[connection signal="request_init" from="TabMenu/ゲーム/MarginContainer/Menu" to="." method="_on_menu_request_init"]
+[connection signal="actioned" from="TabMenu/サウンド/MarginContainer/Menu" to="." method="_on_menu_actioned"]
+[connection signal="reqest_visible" from="TabMenu/サウンド/MarginContainer/Menu" to="." method="_on_menu_reqest_visible"]
+[connection signal="request_init" from="TabMenu/サウンド/MarginContainer/Menu" to="." method="_on_menu_request_init"]
+[connection signal="actioned" from="TabMenu/開発者特権/MarginContainer/Menu" to="." method="_on_menu_actioned"]
+[connection signal="reqest_visible" from="TabMenu/開発者特権/MarginContainer/Menu" to="." method="_on_menu_reqest_visible"]
+[connection signal="request_init" from="TabMenu/開発者特権/MarginContainer/Menu" to="." method="_on_menu_request_init"]
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="toggled" from="TabContainer/画面/FullscreenControl" to="." method="_on_fullscreen_control_toggled"]
 [connection signal="item_selected" from="TabContainer/画面/resolutioncontrol" to="." method="_on_resolutioncontrol_item_selected"]
 [connection signal="item_selected" from="TabContainer/画面/GraphicsPreset" to="." method="_on_graphics_preset_item_selected"]
 [connection signal="toggled" from="TabContainer/ゲーム/mapControal" to="." method="_on_map_controal_toggled"]
 [connection signal="value_changed" from="TabContainer/ゲーム/sensitivity" to="." method="_on_sensitivity_value_changed"]
-[connection signal="value_changed" from="TabContainer/サウンド/master" to="TabContainer/サウンド/master" method="_on_value_changed"]
-[connection signal="value_changed" from="TabContainer/サウンド/se" to="TabContainer/サウンド/se" method="_on_value_changed"]
-[connection signal="value_changed" from="TabContainer/サウンド/BGM" to="TabContainer/サウンド/BGM" method="_on_value_changed"]
-[connection signal="value_changed" from="TabContainer/サウンド/Environment" to="TabContainer/サウンド/Environment" method="_on_value_changed"]
 [connection signal="toggled" from="TabContainer/開発者特権/developerMode" to="." method="_on_developer_mode_toggled"]
 [connection signal="pressed" from="back" to="." method="_on_back_option_pressed"]

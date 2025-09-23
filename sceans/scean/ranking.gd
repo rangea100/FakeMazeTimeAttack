@@ -20,7 +20,9 @@ var _21:int = 0
 var _31:int = 0
 var _41:int = 0
 var _85:int = 0
-var ui_on:bool =false
+var can_ui:bool =false
+var ui_on:bool = false
+var filter_on:bool = false
 func _ready():
 	show_ranking()
 	tab_container.set_tab_hidden(5,true)
@@ -30,10 +32,16 @@ func _ready():
 	load_file_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	load_file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	load_file_dialog.filters = ["*.json ; JSON Files"]
-	ui_on = true
+	can_ui = true
 	for child in $Panel/filter/GridContainer.get_children():
 		if child is CheckBox:
 			child.toggled.connect(_on_filter_checkbox_toggled.bind(child))
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_back") and ui_on:
+		if filter_on:
+			_on_back_pressed()
+		else:
+			hide_ranking()
 func _process(delta: float) -> void:
 	Settings.filter = Settings.filter_setting.any(
 	func(sub): return sub.any(func(v): return v)
@@ -46,8 +54,10 @@ func _process(delta: float) -> void:
 		filter_button.texture_hover = preload("res://assets/filterbutton_hover.png")
 	if Settings.develoer_mode:
 		tab_container.set_tab_hidden(5,false)
+		tab_container.set_tab_disabled(5,false)
 	else:
 		tab_container.set_tab_hidden(5,true)
+		tab_container.set_tab_disabled(5,true)
 func save_json_dialog():
 	file_dialog.popup()
 	file_dialog.file_selected.connect(func(path):
@@ -115,6 +125,8 @@ func show_ranking():
 
 func show_ranking_bord() -> void:
 	visible = true
+	tab_container.ui_on = true
+	ui_on = true
 	animation_player.play("ranking_on")
 func hide_ranking_bord()-> void:
 	animation_player.play("ranking_off")
@@ -124,6 +136,8 @@ func hide_ranking() -> void:
 	AudioManager.play_SE("res://assets/sound/off.mp3")
 	animation_player.play("ranking_off")
 	await animation_player.animation_finished
+	tab_container.ui_on = false
+	ui_on = false
 	visible = false
 	ranking_off.emit()
 
@@ -146,9 +160,6 @@ func _on_clear_pressed() -> void:
 	_set_disabled_recursive(self,false)
 
 
-func _on_tab_container_tab_changed(tab: int) -> void:
-	if ui_on:
-		AudioManager.play_SE("res://assets/sound/select.mp3")
 	
 
 
@@ -156,6 +167,7 @@ func _on_filter_button_pressed() -> void:
 	AudioManager.play_SE("res://assets/sound/select.mp3")
 	filter.visible = true
 	animation_player.play("filter_setting_on")
+	filter_on = true
 	_set_disabled_recursive(self,true)
 	_set_disabled_recursive(filter,false)
 
@@ -164,6 +176,7 @@ func _on_back_pressed() -> void:
 	animation_player.play("filter_setting_off")
 	await animation_player.animation_finished
 	filter.visible = false
+	filter_on = false
 	_set_disabled_recursive(self,false)
 
 func _on_filter_checkbox_toggled(button_pressed: bool, checkbox: CheckBox) -> void:

@@ -76,4 +76,5 @@ func _on_finish_pressed() -> void:
 	AudioManager.play_SE("res://assets/sound/start.mp3")
 	Settings.player_name = ""
 	SceneManager.change_scene("res://sceans/scean/title.tscn",{"pattern":"fade"})
+	Settings.map = []
 	get_tree().paused = false

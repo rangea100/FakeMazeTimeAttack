@@ -193,13 +193,15 @@ func _on_game_complete() -> void:
 		else:
 			RankingSave.add_record(Settings.player_name,stopwatch.elapsed_time,stopwatch.format_time(stopwatch.elapsed_time),Settings.regulation,Settings.map_size)
 			RankingSave.save_ranking()
-		
+	animation_player.play("view_off")
+	use_ui = false
 	game_clear.visible = true
 	game_clear.modulate.a = 0
 	var tween =  create_tween()
 	tween.tween_property(game_clear,"modulate:a",1.0,1.5)
 	print("game_clea")
 	main.show_path(main.path,main.wait)
+	Settings.map = []
 	await tween.finished
 
 func _on_main_path_drawn_completed() -> void:
